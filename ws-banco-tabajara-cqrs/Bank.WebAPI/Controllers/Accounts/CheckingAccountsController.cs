@@ -25,6 +25,7 @@ namespace Bank.WebAPI.Controllers.Accounts
 
         #region HttpGet
         [HttpGet]
+        [Authorize]
         public IHttpActionResult Get()
         {
             var queryString = Request.GetQueryNameValuePairs()
@@ -45,6 +46,7 @@ namespace Bank.WebAPI.Controllers.Accounts
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{id:int}")]
         public IHttpActionResult GetById(int id)
         {
@@ -58,6 +60,7 @@ namespace Bank.WebAPI.Controllers.Accounts
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{id:int}/extract")]
         public IHttpActionResult GetExtracts(int id)
         {
