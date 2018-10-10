@@ -1,0 +1,113 @@
+<div class="row" [formGroup]="formModel">
+    <div class="col-sm-12">
+        <span class="feature-view__title">ENDEREÇO</span>
+        <div class="row feature-view__group">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Rua:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="logradouro" type="text"
+                            placeholder="Entre com a rua">
+                        <span *ngIf="formModel.get('logradouro').hasError('required') && formModel.get('logradouro').touched"
+                            class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Bairro:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="bairro" type="text"
+                            placeholder="Entre com o bairro">
+                        <span *ngIf="formModel.get('bairro').hasError('required') && formModel.get('bairro').touched"
+                            class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Cidade:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="municipio" type="text"
+                            placeholder="Entre com a cidade">
+                        <span *ngIf="formModel.get('municipio').hasError('required') && formModel.get('municipio').touched"
+                            class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Estado:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="estado" type="text"
+                            placeholder="Entre com o estado">
+                        <span *ngIf="formModel.get('estado').hasError('required') && formModel.get('estado').touched"
+                            class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+                    <div class="col-sm-6 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Pais:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="pais" type="text" placeholder="Entre com o Pais">
+                        <span *ngIf="formModel.get('pais').hasError('required') && formModel.get('pais').touched" class=" feature-view__label feature-view__label--error">
+                            Campo obrigatório
+                        </span>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">CEP:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="cep" type="number" placeholder="Entre com o cep">
+                        <span *ngIf="formModel.get('cep').hasError('required') && formModel.get('cep').touched" class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+                    <div class="col-sm-6 feature-view__body">
+                        <label class="control-label">
+                            <span class="feature-view__label">Numero:</span>
+                            <span class=" feature-view__label feature-view__label--error">*</span>
+                        </label>
+                        <input class="feature-view__value form-control " formControlName="numero" type="number"
+                            placeholder="Entre com o numero">
+                        <span *ngIf="formModel.get('numero').hasError('required') && formModel.get('numero').touched"
+                            class=" feature-view__label feature-view__label--error">
+                            campo obrigatório
+                        </span>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

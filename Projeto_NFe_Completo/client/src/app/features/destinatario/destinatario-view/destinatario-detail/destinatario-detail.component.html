@@ -1,0 +1,183 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+        <!-- #region Coluna 1-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Nome:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.nome }}" class="feature-view__value">
+                                            {{ destinatario?.nome }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div class="row" *ngIf="isJuridica">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">CNPJ:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ destinatario?.cnpj }}" class="feature-view__value">
+                                                    {{ destinatario?.cnpj }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Razão Social:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ destinatario?.razaoSocial }}" class="feature-view__value">
+                                                    {{ destinatario?.razaoSocial }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Inscrição Estadual:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ destinatario?.inscricaoEstadual }}" class="feature-view__value">
+                                                    {{ destinatario?.inscricaoEstadual }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Inscrição Municipal:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ destinatario?.inscricaoMunicipal }}" class="feature-view__value">
+                                                    {{ destinatario?.inscricaoMunicipal }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!isJuridica">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">CPF:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ destinatario?.cpf }}" class="feature-view__value">
+                                                    {{ destinatario?.cpf }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Coluna 2-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">ENDERECO</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Rua:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.logradouro }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.logradouro }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Cidade:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.municipio }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.municipio }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Bairro:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.bairro }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.bairro }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Estado:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.estado }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.estado }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Pais:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.pais }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.pais }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 feature-view__body">
+                                    <div></div>
+                                    <div>
+                                        <span class="feature-view__label">CEP:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.cep }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.cep }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 feature-view__body">
+                                    <div></div>
+                                    <div>
+                                        <span class="feature-view__label">Numero:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ destinatario?.endereco?.numero }}" class="feature-view__value">
+                                            {{ destinatario?.endereco?.numero }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FEA02E0B-B9E1-47EC-8105-D5D69AC5254A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlashCodeNFe.Dominio</RootNamespace>
+    <AssemblyName>FlashCodeNFe.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Contribuinte.cs" />
+    <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Base\Imposto.cs" />
+    <Compile Include="Base\IRepositorio.cs" />
+    <Compile Include="Excecoes\AlreadyExistsException.cs" />
+    <Compile Include="Excecoes\BusinessException.cs" />
+    <Compile Include="Excecoes\ErrorCodes.cs" />
+    <Compile Include="Excecoes\InvalidCredentialsException.cs" />
+    <Compile Include="Excecoes\InvalidObjectException.cs" />
+    <Compile Include="Excecoes\NotAllowedException.cs" />
+    <Compile Include="Excecoes\NotFoundException.cs" />
+    <Compile Include="Features\Destinatarios\Destinatario.cs" />
+    <Compile Include="Features\Destinatarios\IDestinatarioRepositorio.cs" />
+    <Compile Include="Features\Emitentes\Emitente.cs" />
+    <Compile Include="Features\Emitentes\IEmitenteRepositorio.cs" />
+    <Compile Include="Features\Enderecos\Endereco.cs" />
+    <Compile Include="Features\Enderecos\IEnderecoRepositorio.cs" />
+    <Compile Include="Features\Notas Fiscais\INotaFiscalRepositorio.cs" />
+    <Compile Include="Features\Notas Fiscais\NotaFiscal.cs" />
+    <Compile Include="Features\Notas Fiscais\NotaFiscalXml.cs" />
+    <Compile Include="Features\Notas Fiscais\SalvarNotaJaEmitidaException.cs" />
+    <Compile Include="Features\Produtos\IProdutoRepositorio.cs" />
+    <Compile Include="Features\Produtos\Produto.cs" />
+    <Compile Include="Features\Transportadores\EFrete.cs" />
+    <Compile Include="Features\Transportadores\ITransportadorRepositorio.cs" />
+    <Compile Include="Features\Transportadores\Transportador.cs" />
+    <Compile Include="Features\Valores\Aliquotas\Aliquota.cs" />
+    <Compile Include="Features\Valores\ValorNota.cs" />
+    <Compile Include="Features\Valores\ValorProduto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlashCodeNFe.Infra\FlashCodeNFe.Infra.csproj">
+      <Project>{1CAC2280-6FBF-4A34-A7EF-4228F4E32529}</Project>
+      <Name>FlashCodeNFe.Infra</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
