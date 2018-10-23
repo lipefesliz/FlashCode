@@ -1,15 +1,15 @@
-<kendo-grid
-    [style.height]="'100%'"
-    [loading]="gridService.loading"
-    [data]="gridService | async"
-    [pageSize]="state.take"
-    [selectable]="selectableSettings"
-    [skip]="state.skip" [sort]="state.sort"
-    [sortable]="true" [pageable]="pageableSettings"
-    [scrollable]="'none'"
-    (dataStateChange)="dataStateChange($event)"
-    (selectionChange)="onSelectionChange($event)">
-
+<kendo-grid [style.height]="'100%'"
+            [loading]="gridService.loading"
+            [data]="gridService | async"
+            [pageSize]="state.take"
+            [selectable]="selectableSettings"
+            [skip]="state.skip"
+            [sort]="state.sort"
+            [sortable]="true"
+            [pageable]="pageableSettings"
+            [scrollable]="'none'"
+            (dataStateChange)="dataStateChange($event)"
+            (selectionChange)="onSelectionChange($event)">
 
     <ng-template kendoGridToolbarTemplate position="top">
         <div class="pkg-manager-grid__action-container">
@@ -32,8 +32,11 @@
 
     <kendo-grid-column field="id" title="Id" width="50"></kendo-grid-column>
     <kendo-grid-column field="nome" title="Nome" width="50"></kendo-grid-column>
-    <kendo-grid-column field="cpf" title="CPF" width="50"></kendo-grid-column>
-    <kendo-grid-column field="cnpj" title="CNPJ" width="50"></kendo-grid-column>
+    <kendo-grid-column field="Documento" width="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{ setDocumento(dataItem) | nddDocMask }}
+        </ng-template>
+    </kendo-grid-column>
     <kendo-grid-column field="cidade" title="Cidade" width="50"></kendo-grid-column>
 
 </kendo-grid>

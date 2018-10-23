@@ -18,11 +18,18 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
                 .ForMember(dest => dest.TotalNota, opt => opt.MapFrom(src => src.Valor.TotalNota))
                 .ForMember(dest => dest.NomeDestinatario, opt => opt.MapFrom(src => src.Destinatario.Nome))
                 .ForMember(dest => dest.NomeEmitente, opt => opt.MapFrom(src => src.Emitente.Nome))
-                .ForMember(dest => dest.NomeTransportador, opt => opt.MapFrom(src => src.Transportador.Nome));
+                .ForMember(dest => dest.NomeTransportador, opt => opt.MapFrom(src => src.Transportador.Nome))
+                .ForMember(dest => dest.ValorFrete, opt => opt.MapFrom(src => src.Valor.Frete));
 
-            CreateMap<NotaFiscalRegistroCommand, NotaFiscal>();
+            CreateMap<NotaFiscalRegistroCommand, NotaFiscal>()
+                .ForPath(dest => dest.ProdutoNota, opt => opt.MapFrom(src => src.ProdutoNota))
+                .ForPath(dest => dest.Valor.Frete, opt => opt.MapFrom(src => src.Frete));
 
             CreateMap<NotaFiscalEditarCommand, NotaFiscal>();
+
+            CreateMap<ProdutoNotaRegisterCommand, ProdutoNota>();
+
+
         }
     }
 }

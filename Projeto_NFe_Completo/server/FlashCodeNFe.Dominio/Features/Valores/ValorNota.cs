@@ -18,7 +18,7 @@ namespace FlashCodeNFe.Dominio.Features.Valores
 
         public void CalcularValorNota()
         {
-            _totalNota = TotalProdutos + ICMS + Ipi + Frete;
+            _totalNota = (TotalProdutos + ICMS + Ipi + Frete);
         }
 
         public override void CalcularICMS()

@@ -37,6 +37,7 @@ namespace FlashCodeNFe.Infra.ORM.Contexts
         public DbSet<NotaFiscal> NotasFiscais { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Transportador> Transportadores { get; set; }
+        public DbSet<ProdutoNota> ProdutoNota { get; set; }
 
         /// <summary>
         /// Método que é executado quando o modelo de banco de dados está sendo criado pelo EF.

@@ -42,7 +42,7 @@ export class DestinatarioDetailComponent implements OnInit, OnDestroy{
     }
 
     public redirect(): void {
-        this.router.navigate(['../']);
+        this.router.navigate(['../'], { relativeTo: this.route });
     }
 
     public onEdit(): void {

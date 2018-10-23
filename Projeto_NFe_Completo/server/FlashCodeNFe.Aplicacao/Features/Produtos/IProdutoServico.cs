@@ -1,4 +1,5 @@
 ﻿using FlashCodeNFe.Aplicacao.Features.Produtos.Commands;
+using FlashCodeNFe.Aplicacao.Features.Produtos.ViewModels;
 using FlashCodeNFe.Dominio.Features.Produtos;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace FlashCodeNFe.Aplicacao.Features.Produtos
 
         bool Atualizar(ProdutoEditarCommand produtoEditarCommand);
 
-        Produto PegarPorID(long id);
+        ProdutoDetailViewModel PegarPorID(long id);
 
         IQueryable<Produto> PegarTodos();
 

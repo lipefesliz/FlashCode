@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmitenteService } from '../../shared/emitente.service';
-import { EmitenteRegisterCommand, Emitente } from '../../shared/emitente.model';
+import { EmitenteRegisterCommand } from '../../shared/emitente.model';
 
 @Component({
     templateUrl: './emitente-create.component.html',
-    styles: ['./ _style.scss'],
 })
 export class EmitenteCreateComponent {
     public isLoading: boolean;

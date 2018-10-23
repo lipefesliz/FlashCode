@@ -4,7 +4,7 @@ import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-gr
 
 import { GridUtilsComponent } from '../../../shared/grid-utils/grid-utils-component';
 
-import { DestinatarioRemoveCommand } from '../shared/destinatario.model';
+import { DestinatarioRemoveCommand, Destinatario } from '../shared/destinatario.model';
 
 import { DestinatarioGridService } from '../shared/destinatario-grid.service';
 import { DestinatarioService } from '../shared/destinatario.service';
@@ -54,5 +54,13 @@ export class DestinatarioListComponent extends GridUtilsComponent implements OnI
 
     public novoDestinatario(): void {
         this.router.navigate(['./cadastrar'], { relativeTo: this.route });
+    }
+
+    public setDocumento(destinatario: Destinatario): string {
+        if (destinatario.cpf !== '') {
+            return destinatario.cpf;
+        } else if (destinatario.cnpj !== '') {
+            return destinatario.cnpj;
+        }
     }
 }

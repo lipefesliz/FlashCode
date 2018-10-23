@@ -1,0 +1,203 @@
+<div class="feature-view">
+    <div class="feature-view__content">
+        <form [formGroup]="formModel">
+            <div class="row">
+                <!-- #region Coluna 1-->
+                <div class="col-sm-5">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feature-view__title">DADOS DA NOTA FISCAL</span>
+                                </div>
+                            </div>
+
+                            <div class="row feature-view__group">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Natureza da Operação:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input class="feature-view__value form-control " formControlName="naturezaOperacao"
+                                                type="text" placeholder="Entre com a operação">
+                                            <span *ngIf="formModel.get('naturezaOperacao').hasError('required') && formModel.get('naturezaOperacao').touched"
+                                                class=" feature-view__label feature-view__label--error">
+                                                Campo obrigatório
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Emitente:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <kendo-dropdownlist class="feature-view__value form-control"
+                                                [data]="emitentes"
+                                                [textField]="'nome'" [valueField]="'nome'"
+                                                (selectionChange)="onSelectEmitente($event)"
+                                                [filterable]="true" (filterChange)="onFilterEmitente($event)">
+                                            </kendo-dropdownlist>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Destinatário:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <kendo-dropdownlist class="feature-view__value form-control"
+                                                [data]="destinatarios"
+                                                [textField]="'nome'" [valueField]="'nome'"
+                                                (selectionChange)="onSelectDestinatario($event)"
+                                                [filterable]="true" (filterChange)="onFilterDestinatario($event)">
+                                            </kendo-dropdownlist>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Transportador:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <kendo-dropdownlist class="feature-view__value form-control"
+                                                [data]="transportadores"
+                                                [textField]="'nome'" [valueField]="'nome'"
+                                                (selectionChange)="onSelectTransportador($event)"
+                                                [filterable]="true" (filterChange)="onFilterTransportador($event)">
+                                            </kendo-dropdownlist>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Valor do Frete:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input class="feature-view__value form-control" formControlName="frete"
+                                                type="number" placeholder="Entre com o Frete">
+                                            <span *ngIf="formModel.get('frete').hasError('required') && formModel.get('frete').touched"
+                                                class=" feature-view__label feature-view__label--error">
+                                                Campo obrigatório
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Coluna 2-->
+                <div class="col-sm-5">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feature-view__title">PRODUTOS</span>
+                                </div>
+                            </div>
+
+                            <div class="row feature-view__group">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">Produto:</span>
+                                                        <span class=" feature-view__label feature-view__label--error">*</span>
+                                                        <kendo-dropdownlist class="feature-view__value form-control"
+                                                            [data]="produtos" [textField]="'descricao'"
+                                                            [valueField]="'descricao'"
+                                                            (selectionChange)="onSelectProduto($event)"
+                                                            [filterable]="true"
+                                                            (filterChange)="onFilterProduto($event)">
+                                                        </kendo-dropdownlist>
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">
+                                                        <button class="ndd-ng-button ndd-ng-button--primary" (click)="addProduto()">Adicionar</button>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feature-view__title">PRODUTOS ADICIONADOS</span>
+                                </div>
+                            </div>
+
+                            <div class="row feature-view__group">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <kendo-grid [style.height]="'50%'" [data]="gridData">
+
+                                                <kendo-grid-checkbox-column width="5"></kendo-grid-checkbox-column>
+
+                                                <kendo-grid-column field="codigoProduto" title="Codigo do produto"
+                                                    width="50"></kendo-grid-column>
+                                                <kendo-grid-column field="descricao" title="Descrição" width="50"></kendo-grid-column>
+                                                <kendo-grid-column field="quantidade" editor="numeric" title="Quantidade"
+                                                    width="50"></kendo-grid-column>
+                                                <kendo-grid-column field="valor" title="Valor do produto" width="50"></kendo-grid-column>
+
+                                            </kendo-grid>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <button class="ndd-ng-button ndd-ng-button--primary" (click)="clear()">Remover
+                                                    Ultimo</button>
+                                            </label>
+                                            <label class="control-label">
+                                                <button class="ndd-ng-button ndd-ng-button--primary" (click)="clearAll()">Remover
+                                                    Todos</button>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Valor Total:</span>
+                                            </label>
+                                            <input class="feature-view__value form-control" type="text" [value]="total"
+                                                disabled="true">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+            </div>
+        </form>
+    </div>
+    <div class="feature-view__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="formModel.invalid" (click)="save()">Salvar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Cancelar</button>
+    </div>
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

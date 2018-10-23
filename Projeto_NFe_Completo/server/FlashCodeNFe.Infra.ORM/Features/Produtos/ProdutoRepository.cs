@@ -59,9 +59,13 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
         public bool Remover(long[] produtosId)
         {
             var produtos = new List<Produto>();
-            foreach (var produto in produtosId)
+            foreach (var id in produtosId)
             {
-                produtos.Add(_context.Produtos.Where(p => p.Id == produto).FirstOrDefault());
+                var produtoVendido = _context.ProdutoNota.Where(x => x.Produto.Id == id).FirstOrDefault();
+                if (produtoVendido == null)
+                {
+                    produtos.Add(_context.Produtos.Where(p => p.Id == id).FirstOrDefault());
+                }
             }
             if (produtos.Count < 1)
                 throw new NotFoundException();

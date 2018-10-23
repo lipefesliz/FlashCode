@@ -1,10 +1,11 @@
-import { EmitenteRemoveCommand } from './../../emitente/shared/emitente.model';
-import { EmitenteService } from './../../emitente/shared/emitente.service';
-import { EmitenteGridService } from './../../emitente/shared/emitente-grid.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { GridUtilsComponent } from './../../../shared/grid-utils/grid-utils-component';
 import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-grid';
+
+import { EmitenteRemoveCommand, Emitente } from './../../emitente/shared/emitente.model';
+import { EmitenteService } from './../../emitente/shared/emitente.service';
+import { EmitenteGridService } from './../../emitente/shared/emitente-grid.service';
+import { GridUtilsComponent } from './../../../shared/grid-utils/grid-utils-component';
 
 @Component({
     templateUrl: './emitente-list.component.html',
@@ -52,5 +53,13 @@ export class EmitenteListComponent extends GridUtilsComponent implements OnInit{
 
     public novoEmitente(): void {
         this.router.navigate(['./cadastrar'], { relativeTo: this.route });
+    }
+
+    public setDocumento(emitente: Emitente): string {
+        if (emitente.cpf !== '') {
+            return emitente.cpf;
+        } else if (emitente.cnpj !== '') {
+            return emitente.cnpj;
+        }
     }
 }

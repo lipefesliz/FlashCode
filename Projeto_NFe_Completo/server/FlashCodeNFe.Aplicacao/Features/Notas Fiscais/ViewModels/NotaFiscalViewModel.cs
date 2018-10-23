@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlashCodeNFe.Aplicacao.Features.Produtos.ViewModels;
+using System;
 
 namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.ViewModels
 {
@@ -11,5 +12,6 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.ViewModels
         public string NomeDestinatario { get; set; }
         public string NomeEmitente { get; set; }
         public string NomeTransportador { get; set; }
+        public decimal ValorFrete { get; set; }
     }
 }

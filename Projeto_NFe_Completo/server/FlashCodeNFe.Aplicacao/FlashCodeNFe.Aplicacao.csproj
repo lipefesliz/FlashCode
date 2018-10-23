@@ -86,6 +86,7 @@
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalEditarCommand.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalRegistroCommand.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalRemoverCommand.cs" />
+    <Compile Include="Features\Notas Fiscais\Commands\ProdutoNotaRegisterCommand.cs" />
     <Compile Include="Features\Notas Fiscais\INotaFiscalServico.cs" />
     <Compile Include="Features\Notas Fiscais\MappingProfile.cs" />
     <Compile Include="Features\Notas Fiscais\NotaFiscalServico.cs" />
@@ -98,12 +99,14 @@
     <Compile Include="Features\Produtos\ProdutoServico.cs" />
     <Compile Include="Features\Produtos\IProdutoServico.cs" />
     <Compile Include="Features\Produtos\Querys\ProdutoQuery.cs" />
+    <Compile Include="Features\Produtos\ViewModels\ProdutoDetailViewModel.cs" />
     <Compile Include="Features\Produtos\ViewModels\ProdutoViewModel.cs" />
     <Compile Include="Features\Transportadores\Commands\TransportadorEditarCommand.cs" />
     <Compile Include="Features\Transportadores\Commands\TransportadorRegistrarCommand.cs" />
     <Compile Include="Features\Transportadores\Commands\TransportadorRemoverCommand.cs" />
     <Compile Include="Features\Transportadores\ITransportadorServico.cs" />
     <Compile Include="Features\Transportadores\MappingProfile.cs" />
+    <Compile Include="Features\Transportadores\TransportadorResource.cs" />
     <Compile Include="Features\Transportadores\TransportadorServico.cs" />
     <Compile Include="Features\Transportadores\Querys\TransportadorQuery.cs" />
     <Compile Include="Features\Transportadores\ViewModels\TransportadorViewModel.cs" />

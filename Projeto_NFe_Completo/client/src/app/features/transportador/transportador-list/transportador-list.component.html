@@ -1,0 +1,42 @@
+<kendo-grid
+    [style.height]="'100%'"
+    [loading]="gridService.loading"
+    [data]="gridService | async"
+    [pageSize]="state.take"
+    [selectable]="selectableSettings"
+    [skip]="state.skip" [sort]="state.sort"
+    [sortable]="true" [pageable]="pageableSettings"
+    [scrollable]="'none'"
+    (dataStateChange)="dataStateChange($event)"
+    (selectionChange)="onSelectionChange($event)">
+
+
+    <ng-template kendoGridToolbarTemplate position="top">
+        <div class="pkg-manager-grid__action-container">
+            <button (click)="novoTransportador()" class="pkg-manager-grid__action">
+                <i class="ndd-font ndd-font-create pkg-manager__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Novo</span>
+            </button>
+            <button (click)="deleteTransportador()" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+                <i class="ndd-font ndd-font-delete pkg-manager__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Remover</span>
+            </button>
+            <button (click)="openTransportador()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
+                <i class="ndd-font ndd-font-open pkg-manager__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Abrir</span>
+            </button>
+        </div>
+    </ng-template>
+
+    <kendo-grid-checkbox-column width="20"></kendo-grid-checkbox-column>
+
+    <kendo-grid-column field="id" title="Id" width="50"></kendo-grid-column>
+    <kendo-grid-column field="nome" title="Nome" width="50"></kendo-grid-column>
+    <kendo-grid-column field="Documento" width="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{ setDocumento(dataItem) | nddDocMask }}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="cidade" title="Cidade" width="50"></kendo-grid-column>
+
+</kendo-grid>

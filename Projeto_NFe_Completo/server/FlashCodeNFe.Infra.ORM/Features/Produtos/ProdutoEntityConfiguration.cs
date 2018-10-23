@@ -15,11 +15,11 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
 
             this.Property(p => p.Descricao).HasMaxLength(50).IsRequired();
             this.Property(p => p.CodigoProduto).IsRequired();
-            this.Property(p => p.Quantidade).IsRequired();
             this.Property(p => p.ValorProduto.ICMS).IsRequired();
             this.Property(p => p.ValorProduto.Ipi).IsRequired();
             this.Property(p => p.ValorProduto.Unitario).IsRequired();
             this.Property(p => p.ValorProduto.Total).IsRequired();
+
         }
     }
 }

@@ -10,7 +10,7 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores
 
         bool Atualizar(TransportadorEditarCommand transportadorEditarCommand);
 
-        Transportador PegarPorID(long id);
+        TransportadorResource PegarPorID(long id);
 
         IQueryable<Transportador> PegarTodos();
 

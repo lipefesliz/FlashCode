@@ -210,7 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlashCodeNFe.Aplicacao\FlashCodeNFe.Aplicacao.csproj">
-      <Project>{2BDF854F-1635-4322-8DE1-C0EB51AAAB27}</Project>
+      <Project>{2bdf854f-1635-4322-8de1-c0eb51aaab27}</Project>
       <Name>FlashCodeNFe.Aplicacao</Name>
     </ProjectReference>
     <ProjectReference Include="..\FlashCodeNFe.Dominio\FlashCodeNFe.Dominio.csproj">
@@ -226,7 +226,6 @@
       <Name>FlashCodeNFe.Infra</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -5,7 +5,7 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores.Commands
 {
     public class TransportadorRemoverCommand
     {
-        public virtual long[] DestinatariosIDs { get; set; }
+        public virtual long[] TransportadoresIDs { get; set; }
 
         public virtual ValidationResult Validate()
         {
@@ -16,8 +16,8 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores.Commands
         {
             public Validator()
             {
-                RuleFor(c => c.DestinatariosIDs).NotNull();
-                RuleFor(c => c.DestinatariosIDs.Length).GreaterThan(0);
+                RuleFor(c => c.TransportadoresIDs).NotNull();
+                RuleFor(c => c.TransportadoresIDs.Length).GreaterThan(0);
             }
         }
     }

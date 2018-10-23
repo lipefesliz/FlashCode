@@ -35,6 +35,33 @@ const appRoutes: Routes = [
                     },
                 },
             },
+            {
+                path: 'transportadores',
+                loadChildren: './features/transportador/transportador.module#TransportadorModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Transportadores',
+                    },
+                },
+            },
+            {
+                path: 'nfe',
+                loadChildren: './features/nfe/nfe.module#NfeModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Notas Fiscais',
+                    },
+                },
+            },
+            {
+                path: 'produtos',
+                loadChildren: './features/produto/produto.module#ProdutoModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Produtos',
+                    },
+                },
+            },
         ],
 
     },

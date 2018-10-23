@@ -28,13 +28,18 @@ export class EmitenteService extends BaseService {
         return this.http.put(this.api, emitente).map((reponse: boolean) => reponse);
     }
 
+    public getAll(): Observable<Emitente[]> {
+        return this.http.get(this.api).map((response: any) => response.items);
+    }
+
     public get(entityId: number): Observable<Emitente> {
         return this.http.get(`${this.api}/${entityId}`).map((response: Emitente) => response);
     }
+
     public getByName(name: any): Observable<Emitente[]> {
 
         return this.http
-            .get(`${this.api}?$count=true&$filter=contains(tolower(name),tolower('${name}'))`)
+            .get(`${this.api}?$count=true&$filter=contains(tolower(nome),tolower('${name}'))`)
             .map((response: any) => response.items);
     }
 

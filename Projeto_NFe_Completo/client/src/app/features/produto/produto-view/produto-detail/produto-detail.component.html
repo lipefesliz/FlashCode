@@ -1,0 +1,106 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+        <!-- #region Coluna 1-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Código:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.codigoProduto }}" class="feature-view__value">
+                                            {{ produto?.codigoProduto }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Drescriçao:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.descricao }}" class="feature-view__value">
+                                            {{ produto?.descricao }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Coluna 2-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">VALORES</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Valor Unitário:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.valorUnitario }}" class="feature-view__value">
+                                            {{ produto?.valorUnitario | currency:'BRL':'symbol' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">ICMS:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.icms }}" class="feature-view__value">
+                                            {{ produto?.icms | currency:'BRL':'symbol' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">IPI:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.ipi }}" class="feature-view__value">
+                                            {{ produto?.ipi | currency:'BRL':'symbol' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Valor Total:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ produto?.valorTotal }}" class="feature-view__value">
+                                            {{ produto?.valorTotal | currency:'BRL':'symbol' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+</div>

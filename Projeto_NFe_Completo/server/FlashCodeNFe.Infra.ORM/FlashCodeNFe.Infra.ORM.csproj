@@ -63,56 +63,17 @@
     <Compile Include="Features\Enderecos\EnderecoRepository.cs" />
     <Compile Include="Features\Notas Fiscais\NotaFiscalEntityConfiguration.cs" />
     <Compile Include="Features\Notas Fiscais\NotaFiscalRepository.cs" />
+    <Compile Include="Features\Produtos Notas\ProdutoNotaEntityConfiguration.cs" />
     <Compile Include="Features\Produtos\ProdutoEntityConfiguration.cs" />
     <Compile Include="Features\Produtos\ProdutoRepository.cs" />
     <Compile Include="Features\Transportadores\TransportadorEntityConfiguration.cs" />
     <Compile Include="Features\Transportadores\TransportadorRepository.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
-    <Compile Include="Migrations\201802191210167_Initial Migration.cs" />
-    <Compile Include="Migrations\201802191210167_Initial Migration.Designer.cs">
-      <DependentUpon>201802191210167_Initial Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201810221758198_Initial.cs" />
+    <Compile Include="Migrations\201810221758198_Initial.Designer.cs">
+      <DependentUpon>201810221758198_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810021710418_Initial.cs" />
-    <Compile Include="Migrations\201810021710418_Initial.Designer.cs">
-      <DependentUpon>201810021710418_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810021723320_v.1.cs" />
-    <Compile Include="Migrations\201810021723320_v.1.Designer.cs">
-      <DependentUpon>201810021723320_v.1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810041732319_ModifyProduto.cs" />
-    <Compile Include="Migrations\201810041732319_ModifyProduto.Designer.cs">
-      <DependentUpon>201810041732319_ModifyProduto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051640130_RefactCpfCnpjToNull.cs" />
-    <Compile Include="Migrations\201810051640130_RefactCpfCnpjToNull.Designer.cs">
-      <DependentUpon>201810051640130_RefactCpfCnpjToNull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051858484_corrigidoObrigatorios.cs" />
-    <Compile Include="Migrations\201810051858484_corrigidoObrigatorios.Designer.cs">
-      <DependentUpon>201810051858484_corrigidoObrigatorios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810052040167_retirado-enderecoId.cs" />
-    <Compile Include="Migrations\201810052040167_retirado-enderecoId.Designer.cs">
-      <DependentUpon>201810052040167_retirado-enderecoId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810081705302_ModifyDestinatario.cs" />
-    <Compile Include="Migrations\201810081705302_ModifyDestinatario.Designer.cs">
-      <DependentUpon>201810081705302_ModifyDestinatario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810081755336_ModifyDestinatarioTrasnportador.cs" />
-    <Compile Include="Migrations\201810081755336_ModifyDestinatarioTrasnportador.Designer.cs">
-      <DependentUpon>201810081755336_ModifyDestinatarioTrasnportador.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810101659340_xmlNota-IsOptional.cs" />
-    <Compile Include="Migrations\201810101659340_xmlNota-IsOptional.Designer.cs">
-      <DependentUpon>201810101659340_xmlNota-IsOptional.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810101705370_ModificadoNotaFiscal.cs" />
-    <Compile Include="Migrations\201810101705370_ModificadoNotaFiscal.Designer.cs">
-      <DependentUpon>201810101705370_ModificadoNotaFiscal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\MigrationConfiguration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,38 +91,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802191210167_Initial Migration.resx">
-      <DependentUpon>201802191210167_Initial Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810021710418_Initial.resx">
-      <DependentUpon>201810021710418_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810021723320_v.1.resx">
-      <DependentUpon>201810021723320_v.1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810041732319_ModifyProduto.resx">
-      <DependentUpon>201810041732319_ModifyProduto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051640130_RefactCpfCnpjToNull.resx">
-      <DependentUpon>201810051640130_RefactCpfCnpjToNull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051858484_corrigidoObrigatorios.resx">
-      <DependentUpon>201810051858484_corrigidoObrigatorios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810052040167_retirado-enderecoId.resx">
-      <DependentUpon>201810052040167_retirado-enderecoId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810081705302_ModifyDestinatario.resx">
-      <DependentUpon>201810081705302_ModifyDestinatario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810081755336_ModifyDestinatarioTrasnportador.resx">
-      <DependentUpon>201810081755336_ModifyDestinatarioTrasnportador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810101659340_xmlNota-IsOptional.resx">
-      <DependentUpon>201810101659340_xmlNota-IsOptional.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810101705370_ModificadoNotaFiscal.resx">
-      <DependentUpon>201810101705370_ModificadoNotaFiscal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810221758198_Initial.resx">
+      <DependentUpon>201810221758198_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

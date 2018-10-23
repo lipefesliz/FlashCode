@@ -1,78 +1,77 @@
 <div class="feature-view-tab__content">
-        <div class="row">
-            <!-- #region Coluna 1-->
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span class="feature-view__title">DADOS CADASTRAIS</span>
-                        <div class="row feature-view__group">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Nome:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.nome }}" class="feature-view__value">
-                                                {{ emitente?.nome }}
-                                            </span>
-                                        </div>
+    <div class="row">
+        <!-- #region Coluna 1-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Nome:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.nome }}" class="feature-view__value">
+                                            {{ emitente?.nome }}
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div class="row" *ngIf="isEmpresa">
-                                            <div class="col-sm-12 feature-view__body">
-                                                <div>
-                                                    <span class="feature-view__label">CNPJ:</span>
-                                                </div>
-                                                <div class="truncate">
-                                                    <span title="{{ emitente?.cnpj }}" class="feature-view__value">
-                                                        {{ emitente?.cnpj }}
-                                                    </span>
-                                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div class="row" *ngIf="isEmpresa">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">CNPJ:</span>
                                             </div>
-                                            <div class="col-sm-12 feature-view__body">
-                                                <div>
-                                                    <span class="feature-view__label">Razão Social:</span>
-                                                </div>
-                                                <div class="truncate">
-                                                    <span title="{{ emitente?.razaoSocial }}" class="feature-view__value">
-                                                        {{ emitente?.razaoSocial }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 feature-view__body">
-                                                <div>
-                                                    <span class="feature-view__label">Inscrição Estadual:</span>
-                                                </div>
-                                                <div class="truncate">
-                                                    <span title="{{ emitente?.inscricaoEstadual }}" class="feature-view__value">
-                                                        {{ emitente?.inscricaoEstadual }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 feature-view__body">
-                                                <div>
-                                                    <span class="feature-view__label">Inscrição Municipal:</span>
-                                                </div>
-                                                <div class="truncate">
-                                                    <span title="{{ emitente?.inscricaoMunicipal }}" class="feature-view__value">
-                                                        {{ emitente?.inscricaoMunicipal }}
-                                                    </span>
-                                                </div>
+                                            <div class="truncate">
+                                                <span title="{{ emitente?.cnpj }}" class="feature-view__value">
+                                                    {{ emitente?.cnpj | nddDocMask }}
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="row" *ngIf="!isEmpresa">
-                                            <div class="col-sm-12 feature-view__body">
-                                                <div>
-                                                    <span class="feature-view__label">CPF:</span>
-                                                </div>
-                                                <div class="truncate">
-                                                    <span title="{{ emitente?.cpf }}" class="feature-view__value">
-                                                        {{ emitente?.cpf }}
-                                                    </span>
-                                                </div>
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Razão Social:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ emitente?.razaoSocial }}" class="feature-view__value">
+                                                    {{ emitente?.razaoSocial }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Inscrição Estadual:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ emitente?.inscricaoEstadual }}" class="feature-view__value">
+                                                    {{ emitente?.inscricaoEstadual }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">Inscrição Municipal:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ emitente?.inscricaoMunicipal }}" class="feature-view__value">
+                                                    {{ emitente?.inscricaoMunicipal }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!isEmpresa">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <div>
+                                                <span class="feature-view__label">CPF:</span>
+                                            </div>
+                                            <div class="truncate">
+                                                <span title="{{ emitente?.cpf }}" class="feature-view__value">
+                                                    {{ emitente?.cpf | nddDocMask }}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -82,87 +81,87 @@
                     </div>
                 </div>
             </div>
-            <!-- #endregion -->
-    
-            <!-- #region Coluna 2-->
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span class="feature-view__title">ENDERECO</span>
-                        <div class="row feature-view__group">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Rua:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.logradouro }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.logradouro }}
-                                            </span>
-                                        </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Coluna 2-->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">ENDERECO</span>
+                    <div class="row feature-view__group">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Rua:</span>
                                     </div>
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Cidade:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.municipio }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.municipio }}
-                                            </span>
-                                        </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.logradouro }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.logradouro }}
+                                        </span>
                                     </div>
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Bairro:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.bairro }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.bairro }}
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Cidade:</span>
                                     </div>
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Estado:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.estado }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.estado }}
-                                            </span>
-                                        </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.municipio }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.municipio }}
+                                        </span>
                                     </div>
-                                    <div class="col-sm-12 feature-view__body">
-                                        <div>
-                                            <span class="feature-view__label">Pais:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.pais }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.pais }}
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Bairro:</span>
                                     </div>
-                                    <div class="col-sm-6 feature-view__body">
-                                        <div></div>
-                                        <div>
-                                            <span class="feature-view__label">CEP:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.cep }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.cep }}
-                                            </span>
-                                        </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.bairro }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.bairro }}
+                                        </span>
                                     </div>
-                                    <div class="col-sm-6 feature-view__body">
-                                        <div></div>
-                                        <div>
-                                            <span class="feature-view__label">Numero:</span>
-                                        </div>
-                                        <div class="truncate">
-                                            <span title="{{ emitente?.endereco?.numero }}" class="feature-view__value">
-                                                {{ emitente?.endereco?.numero }}
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Estado:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.estado }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.estado }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 feature-view__body">
+                                    <div>
+                                        <span class="feature-view__label">Pais:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.pais }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.pais }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 feature-view__body">
+                                    <div></div>
+                                    <div>
+                                        <span class="feature-view__label">CEP:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.cep }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.cep }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 feature-view__body">
+                                    <div></div>
+                                    <div>
+                                        <span class="feature-view__label">Numero:</span>
+                                    </div>
+                                    <div class="truncate">
+                                        <span title="{{ emitente?.endereco?.numero }}" class="feature-view__value">
+                                            {{ emitente?.endereco?.numero }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -170,14 +169,16 @@
                     </div>
                 </div>
             </div>
-            <!-- #endregion -->
         </div>
-    
-        <router-outlet></router-outlet>
-    
-        <div class="feature-view-tab__footer">
-            <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
-            <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
-        </div>
-        <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
-        <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+        <!-- #endregion -->
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+</div>

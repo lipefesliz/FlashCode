@@ -12,11 +12,9 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores.ViewModels
     {
         public long Id { get; set; }
         public virtual string Nome { get; set; }
-        public virtual string RazaoSocial { get; set; }
         public virtual string Cpf { get; set; }
         public virtual string Cnpj { get; set; }
-        public virtual string InscricaoEstadual { get; set; }
-        public EnderecoViewModel Endereco { get; set; }
-        public Frete ResponsabilidadeFrete { get; set; }
+        public string Cidade { get; set; }
+
     }
 }

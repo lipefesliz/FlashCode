@@ -15,7 +15,6 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             this.Property(n => n.DataEntrada).IsRequired();
             this.Property(n => n.NaturezaOperacao).HasMaxLength(50).IsRequired();
 
-
             this.Property(n => n.Valor.Frete).IsRequired();
             this.Property(n => n.Valor.ICMS).IsRequired();
             this.Property(n => n.Valor.Ipi).IsRequired();
@@ -35,13 +34,8 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             this.HasRequired(n => n.Destinatario);
             this.HasRequired(n => n.Emitente).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(n => n.Transportador);
-
-
-            this.HasMany(n => n.Produtos)
-                .WithMany()
-                .Map(p => {
-                    p.MapLeftKey("NotaFiscalId"); p.MapRightKey("ProdutoId"); p.ToTable("NotaFiscal_Produto");
-                });
+            this.Ignore(x => x.Produtos);
+            
         }
     }
 }

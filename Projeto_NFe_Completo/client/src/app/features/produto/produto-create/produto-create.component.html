@@ -1,0 +1,82 @@
+<div class="feature-view">
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" titlebarTitle="Cadastrar Produto"
+        [titlebarRouterToReturnOnClose]="returnRoute">
+    </ndd-ng-titlebar>
+
+    <div class="feature-view__content">
+        <form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
+            <div class="row">
+                <!-- #region Coluna 1-->
+                <div class="col-sm-5">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feature-view__title">DADOS DO PRODUTO</span>
+                                </div>
+                            </div>
+
+                            <div class="row feature-view__group">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Codigo:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input class="feature-view__value form-control " formControlName="codigoProduto"
+                                                type="number" placeholder="Entre com o código">
+                                            <span *ngIf="formModel.get('codigoProduto').hasError('required') && formModel.get('codigoProduto').touched"
+                                                class=" feature-view__label feature-view__label--error">
+                                                campo obrigatório
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Descrição:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input class="feature-view__value form-control " formControlName="descricao"
+                                                type="text" placeholder="Entre com a descrição">
+                                            <span *ngIf="formModel.get('descricao').hasError('required') && formModel.get('descricao').touched"
+                                                class=" feature-view__label feature-view__label--error">
+                                                campo obrigatório
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Valor:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input class="feature-view__value form-control " formControlName="valor"
+                                                type="text" placeholder="Entre com valor">
+                                            <span *ngIf="formModel.get('valor').hasError('required') && formModel.get('valor').touched"
+                                                class=" feature-view__label feature-view__label--error">
+                                                campo obrigatório
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="feature-view__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="formModel.invalid" (click)="save()">Salvar</button>
+
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Cancelar</button>
+    </div>
+</div>
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

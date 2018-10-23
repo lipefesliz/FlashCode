@@ -6,6 +6,7 @@ using FlashCodeNFe.Dominio.Features.Emitentes;
 using FlashCodeNFe.Dominio.Features.Notas_Fiscais;
 using FlashCodeNFe.Dominio.Features.Produtos;
 using FlashCodeNFe.Dominio.Features.Transportadores;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
@@ -32,29 +33,54 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
         }
         public long Add(NotaFiscalRegistroCommand notaFiscalRegistrarCommand)
         {
-            var NotaFiscal = Mapper.Map<NotaFiscalRegistroCommand, NotaFiscal>(notaFiscalRegistrarCommand);
+            var notaFiscal = Mapper.Map<NotaFiscalRegistroCommand, NotaFiscal>(notaFiscalRegistrarCommand);
 
-            NotaFiscal.Emitente = _emitenteRepositorio
+            notaFiscal.Emitente = _emitenteRepositorio
                                    .PegarPorId(notaFiscalRegistrarCommand.EmitenteId);
-            NotaFiscal.Transportador = _transportadorRepositorio
+            notaFiscal.Transportador = _transportadorRepositorio
                                         .PegarPorId(notaFiscalRegistrarCommand.TransportadorId);
-            NotaFiscal.Destinatario = _destinatarioRepositorio
+            notaFiscal.Destinatario = _destinatarioRepositorio
                                         .PegarPorId(notaFiscalRegistrarCommand.DestinatarioId);
 
-            foreach (var produtoId in notaFiscalRegistrarCommand.ProdutosId)
+            foreach (var item in notaFiscalRegistrarCommand.ProdutoNota)
             {
-                var produto = _produtoRepositorio.PegarPorId(produtoId);
-                NotaFiscal.Produtos.Add(produto);
+                var produtoBD = _produtoRepositorio.PegarPorId(item.ProdutoId);
+                notaFiscal.Produtos.Add(produtoBD);
+
             }
-            NotaFiscal.Gerar();
-            return _notaFiscalRepositorio.Add(NotaFiscal).Id;
+
+            foreach (var item in notaFiscal.ProdutoNota)
+            {
+                foreach (var produto in notaFiscalRegistrarCommand.ProdutoNota)
+                {
+                    var produtoBD = _produtoRepositorio.PegarPorId(item.ProdutoId);
+                    item.Produto = produtoBD;
+                }
+            }
+
+            notaFiscal.Gerar();
+
+            return _notaFiscalRepositorio.Add(notaFiscal).Id;
         }
 
-        public bool Atualizar(NotaFiscalEditarCommand NotaFiscalEditarCommand)
+        public bool Atualizar(NotaFiscalEditarCommand notaFiscalEditarCommand)
         {
-            var NotaFiscalDb = _notaFiscalRepositorio.PegarPorId(NotaFiscalEditarCommand.Id) ?? throw new NotFoundException();
+            var NotaFiscalDb = _notaFiscalRepositorio.PegarPorId(notaFiscalEditarCommand.Id) ?? throw new NotFoundException();
 
-            Mapper.Map<NotaFiscalEditarCommand, NotaFiscal>(NotaFiscalEditarCommand, NotaFiscalDb);
+            var notaFiscal = Mapper.Map<NotaFiscalEditarCommand, NotaFiscal>(notaFiscalEditarCommand, NotaFiscalDb);
+
+            notaFiscal.Emitente = _emitenteRepositorio
+                                   .PegarPorId(notaFiscalEditarCommand.EmitenteId);
+            notaFiscal.Transportador = _transportadorRepositorio
+                                        .PegarPorId(notaFiscalEditarCommand.TransportadorId);
+            notaFiscal.Destinatario = _destinatarioRepositorio
+                                        .PegarPorId(notaFiscalEditarCommand.DestinatarioId);
+
+            //foreach (var produtoId in notaFiscalEditarCommand.ProdutosID)
+            //{
+            //    var produto = _produtoRepositorio.PegarPorId(produtoId);
+            //    notaFiscal.ProdutoNota.Add(produto);
+            //}
 
             return _notaFiscalRepositorio.Atualizar(NotaFiscalDb);
         }

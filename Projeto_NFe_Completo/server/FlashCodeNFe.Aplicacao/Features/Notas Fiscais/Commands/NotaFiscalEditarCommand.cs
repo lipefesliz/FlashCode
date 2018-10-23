@@ -12,11 +12,9 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
     {
         public long Id { get; set; }
         public virtual string NaturezaOperacao { get; set; }
-        public DateTime DataEntrada { get; set; }
         public IList<long> ProdutosID { get; set; }
         public decimal Frete { get; set; }
-        public decimal TotalProdutos { get; set; }
-        public virtual long DestinatarioID { get; set; }
+        public virtual long DestinatarioId { get; set; }
         public virtual long EmitenteId { get; set; }
         public virtual long TransportadorId { get; set; }
 
@@ -30,14 +28,12 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
             public Validator()
             {
                 RuleFor(c => c.Id).NotEmpty().NotNull().GreaterThan(0);
-                RuleFor(c => c.DestinatarioID).NotNull().NotEmpty().GreaterThan(0);
+                RuleFor(c => c.DestinatarioId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.EmitenteId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.TransportadorId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.NaturezaOperacao).NotNull().NotEmpty();
-                RuleFor(c => c.DataEntrada).NotEmpty().NotNull();
                 RuleFor(c => c.ProdutosID).NotEmpty().NotNull();
                 RuleFor(c => c.Frete).NotEmpty().NotNull();
-                RuleFor(c => c.TotalProdutos).NotEmpty().NotNull();
             }
         }
     }

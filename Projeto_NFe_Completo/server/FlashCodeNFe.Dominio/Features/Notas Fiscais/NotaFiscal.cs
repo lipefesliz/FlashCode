@@ -14,23 +14,25 @@ namespace FlashCodeNFe.Dominio.Features.Notas_Fiscais
     {
         public NotaFiscal()
         {
-            Produtos = new List<Produto>();
+            ProdutoNota = new List<ProdutoNota>();
             Valor = new ValorNota();
             DataEntrada = DateTime.Now;
+            Produtos = new List<Produto>();
         }
 
         public virtual string NotaFiscalXml { get; set; }
         public string NaturezaOperacao { get; set; }
         public DateTime? DataEmissao { get; set; }
-        public DateTime DataEntrada { get; set; }
+        public DateTime DataEntrada { get; internal set; }
         public string ChaveAcesso { get; set; }
         public bool Emitido { get; set; }
+        public List<ProdutoNota> ProdutoNota { get; set; }
         public List<Produto> Produtos { get; set; }
         public ValorNota Valor { get; set; }
         public virtual Destinatario Destinatario { get; set; }
         public virtual Emitente Emitente { get; set; }
         public virtual Transportador Transportador { get; set; }
-
+        
         public int CodigoUfSC = 42;
         public int ModeloNFe = 55;
 
@@ -46,41 +48,20 @@ namespace FlashCodeNFe.Dominio.Features.Notas_Fiscais
         }
         public void Gerar()
         {
-            UnirProdutosIguais();
             CalcularValoresProdutos();
             Valor.CalcularICMS();
             Valor.CalcularIpi();
             Valor.CalcularValorNota();
-        }
-        private void UnirProdutosIguais()
-        {
-            var produtosAgrupados = Produtos
-                .GroupBy(itemId => itemId.Id)
-                .Select(prod => new Produto
-                {
-                    Id = prod.Key,
-                    Quantidade = prod.Sum(prodQtd => prodQtd.Quantidade),
-                    CodigoProduto = prod.First().CodigoProduto,
-                    Descricao = prod.First().Descricao,
-                    ValorProduto = new ValorProduto()
-                    {
-                        ICMS = prod.First().ValorProduto.ICMS,
-                        Ipi = prod.First().ValorProduto.Ipi,
-                        Total = prod.First().ValorProduto.Total,
-                        Unitario = prod.First().ValorProduto.Unitario
-                    }
-                });
-            Produtos = produtosAgrupados.ToList();
         }
 
         private void CalcularValoresProdutos()
         {
             foreach (var produto in Produtos)
             {
-                produto.CalcularValorTotal();
-                produto.ValorProduto.CalcularICMS();
-                produto.ValorProduto.CalcularIpi();
-                Valor.TotalProdutos += produto.ValorProduto.Total;
+                foreach (var item in this.ProdutoNota)
+                {
+                    Valor.TotalProdutos += (produto.ValorProduto.Total * item.Quantidade);
+                }
             }
         }
 

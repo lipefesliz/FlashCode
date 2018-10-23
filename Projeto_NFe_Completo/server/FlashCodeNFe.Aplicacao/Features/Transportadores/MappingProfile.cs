@@ -9,7 +9,11 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores
     {
         public MappingProfile()
         {
-            CreateMap<Transportador, TransportadorViewModel>();
+            CreateMap<Transportador, TransportadorResource>();
+
+            CreateMap<Transportador, TransportadorViewModel>()
+                .ForMember(dest => dest.Cidade, opt => opt.MapFrom(src => src.Endereco.Municipio));
+
             CreateMap<TransportadorRegistrarCommand, Transportador>();
             CreateMap<TransportadorEditarCommand, Transportador>();
         }

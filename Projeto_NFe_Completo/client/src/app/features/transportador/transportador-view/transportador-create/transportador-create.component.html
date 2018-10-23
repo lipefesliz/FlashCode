@@ -1,0 +1,145 @@
+<div class="feature-view">
+        <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" titlebarTitle="Cadastrar Transportador"
+            [titlebarRouterToReturnOnClose]="returnRoute">
+        </ndd-ng-titlebar>
+        <div class="feature-view__content">
+    
+    
+            <form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
+                <div class="row">
+                    <!-- #region Coluna 1-->
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                            <span class="feature-view__title">DADOS DO TRANSPORTADOR</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="switch-field">
+                                            <input type="radio" id="switch_left" name="switch_2"  (click)="onDocumento($event)" checked />
+                                            <label for="switch_right">Juridica</label>
+                                            <input type="radio" id="switch_right" name="switch_2"  (click)="onDocumento($event)" />
+                                            <label for="switch_left">Fisica</label>
+                                        </span>
+                                    </div>
+                                </div>
+    
+                                <div class="row feature-view__group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-12 feature-view__body">
+                                                <label class="control-label">
+                                                    <span class="feature-view__label">Nome:</span>
+                                                    <span class=" feature-view__label feature-view__label--error">*</span>
+                                                </label>
+                                                <input class="feature-view__value form-control " formControlName="nome"
+                                                    type="text" placeholder="Entre com o nome">
+                                                <span *ngIf="formModel.get('nome').hasError('required') && formModel.get('nome').touched"
+                                                    class=" feature-view__label feature-view__label--error">
+                                                    campo obrigatório
+                                                </span>
+    
+                                            </div>
+                                        </div>
+    
+                                        <div [formGroup]="formModel.get('empresa')" *ngIf="isEmpresa">
+    
+                                            <div class="row">
+                                                <div class="col-sm-12 feature-view__body">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">Razão Social:</span>
+                                                        <span class=" feature-view__label feature-view__label--error">*</span>
+                                                    </label>
+                                                    <input class="feature-view__value form-control " formControlName="razaoSocial"
+                                                        type="text" placeholder="Entre com a Razão Social">
+                                                    <span *ngIf="formModel.get('empresa').get('razaoSocial').hasError('required') && formModel.get('empresa').get('razaoSocial').touched"
+                                                        class=" feature-view__label feature-view__label--error">
+                                                        campo obrigatório
+                                                    </span>
+    
+                                                </div>
+    
+                                            </div>
+    
+                                            <div class="row">
+                                                <div class="col-sm-12 feature-view__body">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">CNPJ:</span>
+                                                        <span class=" feature-view__label feature-view__label--error">*</span>
+    
+                                                    </label>
+                                                    <input class="feature-view__value form-control " formControlName="cnpj"
+                                                        type="text" placeholder="Entre com cnpj">
+                                                    <span *ngIf="formModel.get('empresa').get('cnpj').hasError('required') && formModel.get('empresa').get('cnpj').touched"
+                                                        class=" feature-view__label feature-view__label--error">
+                                                        campo obrigatório
+                                                    </span>
+                                                </div>
+                                            </div>
+    
+                                            <div class="row">
+                                                <div class="col-sm-12 feature-view__body">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">Inscrição Municipal:</span>
+                                                    </label>
+                                                    <input class="feature-view__value form-control " formControlName="inscricaoMunicipal"
+                                                        type="text" placeholder="Entre com a inscrição municipal">
+                                                </div>
+                                            </div>
+    
+                                            <div class="row">
+                                                <div class="col-sm-12 feature-view__body">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">Inscrição Estadual:</span>
+    
+                                                    </label>
+                                                    <input class="feature-view__value form-control " formControlName="inscricaoEstadual"
+                                                        type="text" placeholder="Entre com inscrição estadual">
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                        <div [formGroup]="formModel.get('pessoa')" *ngIf="!isEmpresa">
+                                            <div class="row">
+                                                <div class="col-sm-12 feature-view__body">
+                                                    <label class="control-label">
+                                                        <span class="feature-view__label">CPF:</span>
+                                                        <span class=" feature-view__label feature-view__label--error">*</span>
+    
+                                                    </label>
+                                                    <input class="feature-view__value form-control " formControlName="cpf"
+                                                        type="text" placeholder="Entre com CPF">
+                                                    <span *ngIf="formModel.get('pessoa').get('cpf').hasError('required') && formModel.get('pessoa').get('cpf').touched"
+                                                        class=" feature-view__label feature-view__label--error">
+                                                        campo obrigatório
+                                                    </span>
+    
+                                                </div>
+                                            </div>
+    
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- #endregion -->
+                    <div class="col-sm-5">
+                        <ndd-app-address [formModel]="formModel.get('endereco')"></ndd-app-address>
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+        <div class="feature-view__footer">
+            <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="formModel.invalid" (click)="save()">Salvar</button>
+    
+            <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Cancelar</button>
+        </div>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

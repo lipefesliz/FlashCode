@@ -61,6 +61,7 @@
     <Compile Include="Features\Notas Fiscais\INotaFiscalRepositorio.cs" />
     <Compile Include="Features\Notas Fiscais\NotaFiscal.cs" />
     <Compile Include="Features\Notas Fiscais\NotaFiscalXml.cs" />
+    <Compile Include="Features\Notas Fiscais\ProdutoNota.cs" />
     <Compile Include="Features\Notas Fiscais\SalvarNotaJaEmitidaException.cs" />
     <Compile Include="Features\Produtos\IProdutoRepositorio.cs" />
     <Compile Include="Features\Produtos\Produto.cs" />

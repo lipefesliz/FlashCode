@@ -31,9 +31,11 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores
             return _transportadorRepositorio.Atualizar(transportadorDb);
         }
 
-        public Transportador PegarPorID(long id)
+        public TransportadorResource PegarPorID(long id)
         {
-            return _transportadorRepositorio.PegarPorId(id);
+            var transportador = _transportadorRepositorio.PegarPorId(id);
+
+            return Mapper.Map<TransportadorResource>(transportador);
         }
 
         public IQueryable<Transportador> PegarTodos()
@@ -43,7 +45,7 @@ namespace FlashCodeNFe.Aplicacao.Features.Transportadores
 
         public bool Remover(TransportadorRemoverCommand produtoRemoverCommand)
         {
-            return _transportadorRepositorio.Remover(produtoRemoverCommand.DestinatariosIDs);
+            return _transportadorRepositorio.Remover(produtoRemoverCommand.TransportadoresIDs);
         }
     }
 }

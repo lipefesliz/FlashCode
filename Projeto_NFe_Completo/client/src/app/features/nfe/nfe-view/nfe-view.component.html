@@ -1,0 +1,13 @@
+<div class="feature-view">
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-file-invoice-dollar-solid"
+                     [titlebarTitle]="title"
+                     [titlebarInfoItems]="infoItems"
+                     [titlebarRouterToReturnOnClose]="returnRoute">
+    </ndd-ng-titlebar>
+    <ndd-ng-tabsbar>
+        <ndd-ng-tab tabId="ndd-ng-tab-nfe-info" [tabRoute]="'./info'" tabTitle="Dados Cadastrais"></ndd-ng-tab>
+    </ndd-ng-tabsbar>
+    <div class="feature-view-tab">
+        <router-outlet></router-outlet>
+    </div>
+</div>

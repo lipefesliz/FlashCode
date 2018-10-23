@@ -16,12 +16,17 @@ namespace FlashCodeNFe.Dominio.Features.Valores
 
         public override void CalcularICMS()
         {
-            ICMS = Total * Aliquota.ICMS;
+            ICMS = Aliquota.ICMS;
         }
 
         public override void CalcularIpi()
         {
-            Ipi = Total * Aliquota.Ipi;
+            Ipi = Aliquota.Ipi;
+        }
+
+        public void CalcularTotal()
+        {
+            Total = ICMS + Ipi + Unitario;
         }
     }
 }

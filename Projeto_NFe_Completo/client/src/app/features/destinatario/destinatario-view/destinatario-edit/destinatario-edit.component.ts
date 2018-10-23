@@ -70,6 +70,7 @@ export class DestinatarioEditComponent implements OnInit {
                 this.redirect();
             });
     }
+
     public redirect(): void {
         this.router.navigate(['../'], { relativeTo: this.route });
     }

@@ -1,5 +1,6 @@
 ﻿using FlashCodeNFe.Dominio.Exceptions;
 using FlashCodeNFe.Dominio.Features.Notas_Fiscais;
+using FlashCodeNFe.Dominio.Features.Produtos;
 using FlashCodeNFe.Infra.ORM.Contexts;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,8 +29,8 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
         /// <returns>Retorna o novo notaFiscal com os atributos atualizados (como id)</returns>
         public NotaFiscal Add(NotaFiscal notaFiscal)
         {
-            
             var newNotaFiscal = _context.NotasFiscais.Add(notaFiscal);
+
             _context.SaveChanges();
             return newNotaFiscal;
         }
@@ -44,23 +45,33 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
                 .Include(n => n.Emitente)
                 .Include(n => n.Destinatario)
                 .Include(n => n.Transportador)
-                .Include(n => n.Produtos).Take((int)tamanho);
+                .Include(n => n.ProdutoNota).Take((int)tamanho);
             else
                 return _context.NotasFiscais
                 .Include(n => n.Emitente)
                 .Include(n => n.Destinatario)
                 .Include(n => n.Transportador)
-                .Include(n => n.Produtos);
+                .Include(n => n.ProdutoNota);
         }
 
         public NotaFiscal PegarPorId(long notaFiscalId)
         {
-            return _context.NotasFiscais
+            var nota = _context.NotasFiscais
                 .Include(n => n.Emitente)
                 .Include(n => n.Destinatario)
                 .Include(n => n.Transportador)
-                .Include(n => n.Produtos)
+                .Include(n => n.ProdutoNota)
                 .FirstOrDefault(n => n.Id == notaFiscalId);
+
+            var produtosIds = _context.ProdutoNota.Where(x => x.NotaFiscal.Id == notaFiscalId).Include(x => x.Produto).ToList();
+
+            foreach (var item in produtosIds)
+            {
+                nota.Produtos.Add(_context.Produtos.Where(x => x.Id == item.Produto.Id).FirstOrDefault());
+
+            }
+
+            return nota;
         }
 
         #endregion
@@ -76,7 +87,7 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             }
             if (notaFiscals.Count < 1)
                 throw new NotFoundException();
-
+            
             _context.NotasFiscais.RemoveRange(notaFiscals);
 
             return _context.SaveChanges() > 0;

@@ -11,9 +11,8 @@ namespace FlashCodeNFe.Aplicacao.Features.Produtos.Commands
     public class ProdutoRegistrarCommand
     {
         public string Descricao { get; set; }
-        public  decimal Valor { get; set; }
-        public string Codigo { get; set; }
-        public int Quantidade { get; set; }
+        public decimal Valor { get; set; }
+        public int CodigoProduto { get; set; }
         
         public virtual ValidationResult Validate()
         {
@@ -25,7 +24,7 @@ namespace FlashCodeNFe.Aplicacao.Features.Produtos.Commands
             public Validator()
             {
                 RuleFor(c => c.Descricao).NotNull().NotEmpty();
-                RuleFor(c => c.Codigo).NotNull().NotEmpty();
+                RuleFor(c => c.CodigoProduto).NotNull().NotEmpty();
                 RuleFor(c => c.Valor).NotEmpty().NotNull().GreaterThan(0);
             }
         }

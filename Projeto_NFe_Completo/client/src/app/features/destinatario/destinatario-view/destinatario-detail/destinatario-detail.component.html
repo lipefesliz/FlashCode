@@ -28,7 +28,7 @@
                                             </div>
                                             <div class="truncate">
                                                 <span title="{{ destinatario?.cnpj }}" class="feature-view__value">
-                                                    {{ destinatario?.cnpj }}
+                                                    {{ destinatario?.cnpj | nddDocMask }}
                                                 </span>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                             </div>
                                             <div class="truncate">
                                                 <span title="{{ destinatario?.cpf }}" class="feature-view__value">
-                                                    {{ destinatario?.cpf }}
+                                                    {{ destinatario?.cpf | nddDocMask }}
                                                 </span>
                                             </div>
                                         </div>
@@ -181,3 +181,4 @@
     </div>
     <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
     <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+</div>

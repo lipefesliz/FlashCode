@@ -13,13 +13,14 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             HasKey(t => t.Id);
 
             Property(t => t.Nome).HasMaxLength(50).IsRequired();
+            Property(t => t.ResponsabilidadeFrete).IsRequired();
+
             Property(t => t.RazaoSocial).HasMaxLength(50).IsOptional();
             Property(t => t.InscricaoEstadual).HasMaxLength(50).IsOptional();
-            Property(t => t.ResponsabilidadeFrete).IsRequired();
-            Property(e => e.Cpf).IsOptional();
-            Property(e => e.Cnpj).IsOptional();
-
-            HasRequired(e => e.Endereco).WithMany().WillCascadeOnDelete(true);
+            Property(t => t.InscricaoMunicipal).HasMaxLength(50).IsOptional();
+            this.Property(e => e.Cpf).IsOptional();
+            this.Property(e => e.Cnpj).IsOptional();
+            HasRequired(t => t.Endereco).WithMany();
         }
     }
 }

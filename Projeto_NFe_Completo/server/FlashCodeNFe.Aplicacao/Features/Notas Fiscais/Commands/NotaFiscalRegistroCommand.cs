@@ -13,10 +13,8 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
     public class NotaFiscalRegistroCommand
     {
         public virtual string NaturezaOperacao { get; set; }
-        public DateTime DataEntrada { get; set; }
-        public int[] ProdutosId { get; set; }
+        public List<ProdutoNotaRegisterCommand> ProdutoNota { get; set; }
         public decimal Frete { get; set; }
-        public decimal TotalProdutos { get; set; }
         public virtual long DestinatarioId { get; set; }
         public virtual long EmitenteId { get; set; }
         public virtual long TransportadorId { get; set; }
@@ -34,10 +32,8 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
                 RuleFor(c => c.EmitenteId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.TransportadorId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.NaturezaOperacao).NotNull().NotEmpty();
-                RuleFor(c => c.DataEntrada).NotEmpty().NotNull();
-                RuleFor(c => c.ProdutosId).NotEmpty().NotNull();
+                RuleFor(c => c.ProdutoNota).NotEmpty().NotNull();
                 RuleFor(c => c.Frete).NotEmpty().NotNull();
-                RuleFor(c => c.TotalProdutos).NotEmpty().NotNull();
             }
         }
     }

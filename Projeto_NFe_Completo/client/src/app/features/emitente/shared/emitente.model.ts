@@ -72,5 +72,4 @@ export class Emitente {
     public cidade: string;
     public inscricaoMunicipal: string;
     public endereco: Endereco;
-
 }

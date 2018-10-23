@@ -2,9 +2,8 @@
     <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" titlebarTitle="Cadastrar Emitente"
         [titlebarRouterToReturnOnClose]="returnRoute">
     </ndd-ng-titlebar>
+
     <div class="feature-view__content">
-
-
         <form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
             <div class="row">
                 <!-- #region Coluna 1-->
@@ -13,9 +12,7 @@
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label class="control-label">
                                         <span class="feature-view__title">DADOS DO EMITENTE</span>
-                                    </label>
                                 </div>
                                 <div class="col-sm-6">
                                     <span class="switch-field">
@@ -41,12 +38,10 @@
                                                 class=" feature-view__label feature-view__label--error">
                                                 campo obrigatório
                                             </span>
-
                                         </div>
                                     </div>
 
                                     <div [formGroup]="formModel.get('empresa')" *ngIf="isEmpresa">
-
                                         <div class="row">
                                             <div class="col-sm-12 feature-view__body">
                                                 <label class="control-label">
@@ -59,9 +54,7 @@
                                                     class=" feature-view__label feature-view__label--error">
                                                     campo obrigatório
                                                 </span>
-
                                             </div>
-
                                         </div>
 
                                         <div class="row">
@@ -69,7 +62,6 @@
                                                 <label class="control-label">
                                                     <span class="feature-view__label">CNPJ:</span>
                                                     <span class=" feature-view__label feature-view__label--error">*</span>
-
                                                 </label>
                                                 <input class="feature-view__value form-control " formControlName="cnpj"
                                                     type="text" placeholder="Entre com cnpj">
@@ -94,7 +86,6 @@
                                             <div class="col-sm-12 feature-view__body">
                                                 <label class="control-label">
                                                     <span class="feature-view__label">Inscrição Estadual:</span>
-
                                                 </label>
                                                 <input class="feature-view__value form-control " formControlName="inscricaoEstadual"
                                                     type="text" placeholder="Entre com inscrição estadual">
@@ -102,14 +93,12 @@
                                         </div>
                                     </div>
 
-
                                     <div [formGroup]="formModel.get('pessoa')" *ngIf="!isEmpresa">
                                         <div class="row">
                                             <div class="col-sm-12 feature-view__body">
                                                 <label class="control-label">
                                                     <span class="feature-view__label">CPF:</span>
                                                     <span class=" feature-view__label feature-view__label--error">*</span>
-
                                                 </label>
                                                 <input class="feature-view__value form-control " formControlName="cpf"
                                                     type="text" placeholder="Entre com CPF">
@@ -117,10 +106,8 @@
                                                     class=" feature-view__label feature-view__label--error">
                                                     campo obrigatório
                                                 </span>
-
                                             </div>
                                         </div>
-
                                     </div>
 
                                 </div>
@@ -139,7 +126,6 @@
     </div>
     <div class="feature-view__footer">
         <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="formModel.invalid" (click)="save()">Salvar</button>
-
         <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Cancelar</button>
     </div>
 </div>
