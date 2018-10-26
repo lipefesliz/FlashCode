@@ -1,4 +1,7 @@
-import { ProdutoViewModel } from './../../produto/shared/produto.model';
+import { ProdutoViewModel, Produto } from './../../produto/shared/produto.model';
+import { Destinatario } from '../../destinatario/shared/destinatario.model';
+import { Emitente } from '../../emitente/shared/emitente.model';
+import { Transportador } from '../../transportador/shared/transportador.model';
 
 export class Nfe {
 
@@ -6,10 +9,12 @@ export class Nfe {
     public naturezaOperacao: string;
     public dataEntrada: string;
     public totalNota: string;
-    public nomeDestinatario: string;
-    public nomeEmitente: string;
-    public nomeTransportador: string;
+    public destinatario: Destinatario;
+    public emitente: Emitente;
+    public transportador: Transportador;
     public valorFrete: string;
+    public produtos: Produto[];
+
 }
 
 export class NfeViewModel {
@@ -56,13 +61,21 @@ export class NfeEditCommand {
     constructor(nfe: any) {
         this.id = nfe.id;
         this.naturezaOperacao = nfe.naturezaOperacao;
-        this.frete = nfe.frete;
-        this.destinatarioId = nfe.destinatario.Id;
-        this.emitenteId = nfe.emitente.Id;
-        this.transportadorId = nfe.transportador.Id;
-        nfe.produtos.forEach((p: any) => {
-            this.produtosId.push(p.id);
-        });
+
+        if (nfe.valor) {
+            this.frete = nfe.valor.frete;
+            this.destinatarioId = nfe.destinatario.id;
+            this.emitenteId = nfe.emitente.id;
+            this.transportadorId = nfe.transportador.id;
+            nfe.produtos.forEach((p: any) => {
+                this.produtosId.push(p.id);
+            });
+        } else {
+            this.frete = nfe.frete;
+            this.destinatarioId = nfe.destinatarioId;
+            this.emitenteId = nfe.emitenteId;
+            this.transportadorId = nfe.transportadorId;
+        }
     }
 }
 
@@ -71,7 +84,7 @@ export class NfeRegisterCommand {
     public destinatarioId: number;
     public emitenteId: number;
     public transportadorId: number;
-    public produtoNota: ProdutoNotaRegisterCommand[];
+    public produtoNota: ProdutoNotaCommand[];
 
     constructor(nfe: any) {
         this.naturezaOperacao = nfe.naturezaOperacao;
@@ -83,7 +96,18 @@ export class NfeRegisterCommand {
     }
 }
 
-export class ProdutoNotaRegisterCommand {
+export class ProdutoNotaCommand {
+    public notaFiscalId: number;
     public produtoId: number;
     public quantidade: number;
+}
+
+export class ProdutoNotaRemoveCommand {
+    public notaId: number;
+    public produtosIds: number[];
+
+    constructor(notaFiscalId: number, produtosNota: any[]) {
+        this.notaId = notaFiscalId;
+        this.produtosIds = produtosNota.map((p: any) => p.id);
+    }
 }

@@ -16,7 +16,6 @@ export class ProdutoEditComponent implements OnInit {
         descricao: ['', Validators.required],
         codigoProduto: ['', Validators.required],
         valorUnitario: ['', Validators.required],
-        quantidade: ['', Validators.required],
     });
 
     constructor(private service: ProdutoService,

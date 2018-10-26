@@ -11,7 +11,7 @@ namespace FlashCodeNFe.Dominio.Features.Notas_Fiscais
 {
     public class ProdutoNota : Entidade
     {
-        public NotaFiscal NotaFiscal { get; set; }
+        public long NotaFiscalId { get; set; }
         public Produto Produto { get; set; }
         public long Quantidade { get; set; }
         public virtual ValorProduto ValorProduto { get; set; }

@@ -6,6 +6,7 @@ import { NfeResolveService } from './shared/nfe.service';
 import { NfeViewComponent } from './nfe-view/nfe-view.component';
 import { NfeDetailComponent } from './nfe-view/nfe-detail/nfe-detail.component';
 import { NfeEditComponent } from './nfe-view/nfe-edit/nfe-edit.component';
+import { NfeDetailProdutoComponent } from './nfe-view/nfe-detail/nfe-detail-produto/nfe-detail-produto.component';
 
 const nfeRoutes: Routes = [
     {
@@ -16,12 +17,12 @@ const nfeRoutes: Routes = [
         path: 'cadastrar',
         component: NfeCreateComponent,
         data:
+        {
+            breadcrumbOptions:
             {
-                breadcrumbOptions:
-                    {
-                        breadcrumbLabel: 'Cadastrar',
-                    },
+                breadcrumbLabel: 'Cadastrar',
             },
+        },
     },
     {
         path: ':nfeId',
@@ -37,34 +38,43 @@ const nfeRoutes: Routes = [
             },
         },
         children:
-        [
-            {
-                path: '',
-                component: NfeViewComponent,
-                children:
-                [
-                    {
-                        path: '',
-                        redirectTo: 'info',
-                        pathMatch: 'full',
-                    },
-                    {
-                        path: 'info',
-                        children:
+            [
+                {
+                    path: '',
+                    component: NfeViewComponent,
+                    children:
                         [
                             {
                                 path: '',
-                                component: NfeDetailComponent,
+                                redirectTo: 'info',
+                                pathMatch: 'full',
                             },
                             {
-                                path: 'editar',
-                                component: NfeEditComponent,
+                                path: 'info',
+                                children:
+                                    [
+                                        {
+                                            path: '',
+                                            component: NfeDetailComponent,
+                                        },
+                                        {
+                                            path: 'editar',
+                                            component: NfeEditComponent,
+                                        },
+                                    ],
+                            },
+                            {
+                                path: 'produtos', children:
+                                    [
+                                        {
+                                            path: '',
+                                            component: NfeDetailProdutoComponent,
+                                        },
+                                    ],
                             },
                         ],
-                    },
-                ],
-            },
-        ],
+                },
+            ],
     },
 ];
 

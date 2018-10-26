@@ -73,6 +73,14 @@
     <Compile Include="Migrations\201810221758198_Initial.Designer.cs">
       <DependentUpon>201810221758198_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810251748438_RemoveNota_ProdutoNota.cs" />
+    <Compile Include="Migrations\201810251748438_RemoveNota_ProdutoNota.Designer.cs">
+      <DependentUpon>201810251748438_RemoveNota_ProdutoNota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810251805349_TransportadorEnderecoCascade.cs" />
+    <Compile Include="Migrations\201810251805349_TransportadorEnderecoCascade.Designer.cs">
+      <DependentUpon>201810251805349_TransportadorEnderecoCascade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +101,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810221758198_Initial.resx">
       <DependentUpon>201810221758198_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251748438_RemoveNota_ProdutoNota.resx">
+      <DependentUpon>201810251748438_RemoveNota_ProdutoNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251805349_TransportadorEnderecoCascade.resx">
+      <DependentUpon>201810251805349_TransportadorEnderecoCascade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

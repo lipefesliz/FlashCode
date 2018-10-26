@@ -63,24 +63,23 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
             return _notaFiscalRepositorio.Add(notaFiscal).Id;
         }
 
+        public bool AdicionarProduto(ProdutoNotaRegisterCommand produtoNotaRegisterCommand)
+        {
+            return _notaFiscalRepositorio.AdicionarProduto(produtoNotaRegisterCommand.NotaFiscalId, produtoNotaRegisterCommand.ProdutoId, produtoNotaRegisterCommand.Quantidade);
+        }
+
         public bool Atualizar(NotaFiscalEditarCommand notaFiscalEditarCommand)
         {
             var NotaFiscalDb = _notaFiscalRepositorio.PegarPorId(notaFiscalEditarCommand.Id) ?? throw new NotFoundException();
 
-            var notaFiscal = Mapper.Map<NotaFiscalEditarCommand, NotaFiscal>(notaFiscalEditarCommand, NotaFiscalDb);
+            Mapper.Map<NotaFiscalEditarCommand, NotaFiscal>(notaFiscalEditarCommand, NotaFiscalDb);
 
-            notaFiscal.Emitente = _emitenteRepositorio
+            NotaFiscalDb.Emitente = _emitenteRepositorio
                                    .PegarPorId(notaFiscalEditarCommand.EmitenteId);
-            notaFiscal.Transportador = _transportadorRepositorio
+            NotaFiscalDb.Transportador = _transportadorRepositorio
                                         .PegarPorId(notaFiscalEditarCommand.TransportadorId);
-            notaFiscal.Destinatario = _destinatarioRepositorio
+            NotaFiscalDb.Destinatario = _destinatarioRepositorio
                                         .PegarPorId(notaFiscalEditarCommand.DestinatarioId);
-
-            //foreach (var produtoId in notaFiscalEditarCommand.ProdutosID)
-            //{
-            //    var produto = _produtoRepositorio.PegarPorId(produtoId);
-            //    notaFiscal.ProdutoNota.Add(produto);
-            //}
 
             return _notaFiscalRepositorio.Atualizar(NotaFiscalDb);
         }
@@ -90,6 +89,12 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
             return _notaFiscalRepositorio.PegarPorId(id);
         }
 
+        public IQueryable<Produto> PegarPorProdutoPorNota(long notaId)
+        {
+            return _notaFiscalRepositorio.PegarProdutoPorNota(notaId);
+        }
+
+
         public IQueryable<NotaFiscal> PegarTodos()
         {
             return _notaFiscalRepositorio.PegarTodos();
@@ -98,6 +103,11 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
         public bool Remover(NotaFiscalRemoverCommand notaFiscalRemoverCommand)
         {
             return _notaFiscalRepositorio.Remover(notaFiscalRemoverCommand.NotasIDs);
+        }
+
+        public bool RemoverProdutos(NotaFiscalRemoveProdutosCommand notaFiscalRemoveProdutosCommand)
+        {
+            return _notaFiscalRepositorio.RemoverProdutos(notaFiscalRemoveProdutosCommand.NotaId, notaFiscalRemoveProdutosCommand.ProdutosIds);
         }
     }
 }

@@ -17,8 +17,9 @@ import { NfeCreateComponent } from './nfe-view/nfe-create/nfe-create.component';
 import { NfeViewComponent } from './nfe-view/nfe-view.component';
 import { NfeEditComponent } from './nfe-view/nfe-edit/nfe-edit.component';
 import { NfeDetailComponent } from './nfe-view/nfe-detail/nfe-detail.component';
-import { NfeGridService } from './shared/nfe-grid.service';
+import { NfeGridService, NfeProdutoGridService } from './shared/nfe-grid.service';
 import { NfeResolveService } from './shared/nfe.service';
+import { NfeDetailProdutoComponent } from './nfe-view/nfe-detail/nfe-detail-produto/nfe-detail-produto.component';
 
 @NgModule({
     imports: [
@@ -47,12 +48,15 @@ import { NfeResolveService } from './shared/nfe.service';
         NfeViewComponent,
         NfeEditComponent,
         NfeDetailComponent,
+        NfeDetailComponent,
+        NfeDetailProdutoComponent,
     ],
     exports: [
     ],
     providers: [
         NfeGridService,
         NfeResolveService,
+        NfeProdutoGridService,
     ],
 })
 export class NfeModule {

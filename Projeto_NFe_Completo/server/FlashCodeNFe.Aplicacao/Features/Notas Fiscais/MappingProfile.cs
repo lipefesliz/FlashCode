@@ -25,7 +25,8 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
                 .ForPath(dest => dest.ProdutoNota, opt => opt.MapFrom(src => src.ProdutoNota))
                 .ForPath(dest => dest.Valor.Frete, opt => opt.MapFrom(src => src.Frete));
 
-            CreateMap<NotaFiscalEditarCommand, NotaFiscal>();
+            CreateMap<NotaFiscalEditarCommand, NotaFiscal>()
+                .ForPath(dest => dest.Valor.Frete, opt => opt.MapFrom(src => src.Frete));
 
             CreateMap<ProdutoNotaRegisterCommand, ProdutoNota>();
 

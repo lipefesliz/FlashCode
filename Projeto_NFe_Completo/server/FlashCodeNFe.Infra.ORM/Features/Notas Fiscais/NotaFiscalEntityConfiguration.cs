@@ -35,7 +35,7 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             this.HasRequired(n => n.Emitente).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(n => n.Transportador);
             this.Ignore(x => x.Produtos);
-            
+            HasMany(x => x.ProdutoNota).WithRequired().HasForeignKey(p => p.NotaFiscalId);
         }
     }
 }

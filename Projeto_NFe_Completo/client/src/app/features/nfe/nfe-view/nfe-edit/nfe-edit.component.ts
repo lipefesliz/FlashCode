@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { NfeEditCommand, NfeViewModel } from '../../shared/nfe.model';
+import { NfeEditCommand, NfeViewModel, Nfe } from '../../shared/nfe.model';
 import { Emitente } from '../../../emitente/shared/emitente.model';
 import { Destinatario } from '../../../destinatario/shared/destinatario.model';
 import { Transportador } from '../../../transportador/shared/transportador.model';
@@ -25,7 +25,11 @@ export class NfeEditComponent implements OnInit {
     public destinatarios: Destinatario[];
     public transportadores: Transportador[];
     public produtos: Produto[];
-    public total: string;
+    public total: number = 0;
+    public totalOriginal: number = 0;
+    public defaultItemEmitente: any;
+    public defaultItemTrasportador: any;
+    public defaultItemDestinatario: any;
     public formModel: FormGroup = this.fb.group({
         id: [''],
         naturezaOperacao: ['', [Validators.required]],
@@ -33,7 +37,6 @@ export class NfeEditComponent implements OnInit {
         emitenteId: ['', [Validators.required]],
         destinatarioId: ['', [Validators.required]],
         transportadorId: ['', [Validators.required]],
-        produtoId: [[0], [Validators.required]],
     });
     private gridData: any[] = [];
     private produtoSelecionado: Produto;
@@ -53,35 +56,16 @@ export class NfeEditComponent implements OnInit {
 
     public ngOnInit(): void {
         this.isLoading = true;
-        this.serviceResolver.onChanges.take(1).subscribe((nfe: NfeViewModel) => {
+        this.serviceResolver.onChanges.take(1).subscribe((nfe: any) => {
             this.isLoading = false;
             this.nfe = Object.assign(new NfeEditCommand(nfe), nfe);
-            this.formModel.patchValue(this.nfe);
+            this.populateDefaulItens(nfe);
+            this.patchValueFormModel(nfe);
+            this.total = nfe.valor.totalNota;
+            this.totalOriginal = nfe.valor.totalNota;
         });
-        this.emitenteService.getAll()
-        .do(() => this.isLoading = false)
-        .subscribe((emitentes: Emitente[]) => {
-            this.emitentes = emitentes;
-        });
-        this.destinatarioService.getAll()
-        .do(() => this.isLoading = false)
-        .subscribe((destinatarios: Destinatario[]) => {
-            this.destinatarios = destinatarios;
-        });
-        this.transportadorService.getAll()
-        .do(() => this.isLoading = false)
-        .subscribe((transportadores: Transportador[]) => {
-            this.transportadores = transportadores;
-        });
-        this.produtoService.getAll()
-        .do(() => this.isLoading = false)
-        .subscribe((produtos: Produto[]) => {
-            this.produtos = produtos;
-            this.data = this.produtos.slice();
-        });
-        this.nfe.produtosId.forEach((id: number) => {
-            this.gridData.push(this.produtoService.get(id));
-        });
+
+        this.formModel.valueChanges.subscribe(() => this.calculateTotal());
     }
 
     public save(): void {
@@ -93,6 +77,7 @@ export class NfeEditComponent implements OnInit {
             .subscribe((response: boolean) => {
                 alert('Salvo com sucesso');
                 this.redirect();
+                this.serviceResolver.resolveFromRouteAndNotify();
             });
     }
 
@@ -154,11 +139,24 @@ export class NfeEditComponent implements OnInit {
         });
     }
 
-    public clear(): void {
-        this.gridData.pop();
+    private populateDefaulItens(nfe: Nfe): void {
+        this.defaultItemEmitente = { nome: nfe.emitente.nome };
+        this.defaultItemDestinatario = { nome: nfe.destinatario.nome };
+        this.defaultItemTrasportador = { nome: nfe.transportador.nome };
     }
 
-    public clearAll(): void {
-        this.gridData = [];
+    private calculateTotal(): any {
+        const valorFrete: number = this.formModel.get('frete').value;
+        this.total = this.totalOriginal + valorFrete;
+    }
+    private patchValueFormModel(nfe: any): any {
+        this.formModel.patchValue(nfe);
+        this.formModel.patchValue({
+            emitenteId: nfe.emitente.id,
+            transportadorId: nfe.transportador.id,
+            destinatarioId: nfe.destinatario.id,
+            frete: this.nfe.frete,
+        });
+        this.formModel.updateValueAndValidity();
     }
 }

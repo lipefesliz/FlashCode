@@ -7,7 +7,7 @@ import { NDDBreadcrumbService } from './../../../shared/ndd-ng-breadcrumb/compon
 import { CORE_CONFIG_TOKEN, ICoreConfig } from './../../../core/core.config';
 import { BaseService } from './../../../core/utils/base-service';
 import { AbstractResolveService } from './../../../../app/core/utils/abstract-resolve.service';
-import { Nfe, NfeRegisterCommand, NfeRemoveCommand, NfeEditCommand } from './nfe.model';
+import { Nfe, NfeRegisterCommand, NfeRemoveCommand, NfeEditCommand, ProdutoNotaCommand, ProdutoNotaRemoveCommand } from './nfe.model';
 
 @Injectable()
 export class NfeService extends BaseService {
@@ -40,6 +40,15 @@ export class NfeService extends BaseService {
 
     public add(nfe: NfeRegisterCommand): Observable<number> {
         return this.http.post(this.api, nfe).map((reponse: number) => reponse);
+    }
+
+    public removeProdutos(produtoNotaRemoveCommand: ProdutoNotaRemoveCommand): Observable<boolean> {
+        return this.deleteRequestWithBody(`${this.api}/produtos`, produtoNotaRemoveCommand)
+            .map((response: boolean) => response);
+    }
+
+    public addProduto(produtoNota: any): Observable<boolean> {
+        return this.http.patch(this.api, produtoNota).map((reponse: boolean) => reponse);
     }
 }
 

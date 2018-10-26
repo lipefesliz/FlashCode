@@ -33,3 +33,30 @@ export class NfeGridService extends BehaviorSubject<GridDataResult>{
 
     }
 }
+
+@Injectable()
+export class NfeProdutoGridService extends BehaviorSubject<GridDataResult>{
+    public loading: Boolean = false;
+
+    constructor( @Inject(CORE_CONFIG_TOKEN) private config: ICoreConfig,
+        private http: HttpClient) {
+        super(null);
+    }
+
+    public query(state: State, nfeId: number): void {
+        this.fetch(state, nfeId).take(1).subscribe((result: GridDataResult) => super.next(result));
+    }
+
+    protected fetch(state: any, nfeId: number): Observable<GridDataResult> {
+        const queryStr: string = `${toODataString(state)}&$count=true`;
+        this.loading = true;
+
+        return this.http.get(`${this.config.apiEndpoint}api/notasfiscais/${nfeId}/produtos?${queryStr}`)
+            .map((response: any): GridDataResult => ({
+                data: response.items,
+                total: parseInt(response.count, 10),
+            }))
+            .do(() => this.loading = false);
+
+    }
+}

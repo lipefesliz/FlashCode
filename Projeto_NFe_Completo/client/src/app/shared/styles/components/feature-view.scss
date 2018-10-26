@@ -31,6 +31,10 @@ $view-entitled-title-height: rem-calc(45px);
             &--without-footer {
                 height: 100%;
             }
+            &--without-footerII {
+                height: 100%;
+                padding: rem-calc(15px);
+            }
         }
     }
     // Estilo para páginas que contenham título abaixo da Titlebar.
@@ -85,6 +89,14 @@ $view-entitled-title-height: rem-calc(45px);
     .feature-view-entitled__content,
     .feature-view-entitled__footer {
         padding: rem-calc(20px);
+    }
+
+    .feature-view-tab__content__header {
+        height: 20%;
+    }
+
+    .feature-view-tab__content__body {
+        height: 80%;
     }
     /*
  * Esconde botões quando o tamanho da tela for mobile.

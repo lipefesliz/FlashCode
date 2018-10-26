@@ -51,7 +51,7 @@ namespace FlashCodeNFe.Infra.ORM.Features.Destinatarios
             return _context.Destinatarios
                             .Include(d => d.Endereco)
                             .Where(c => c.Id == destinatarioId)
-                            .SingleOrDefault();
+                            .FirstOrDefault();
         }
 
         #endregion

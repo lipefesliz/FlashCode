@@ -85,6 +85,7 @@
     <Compile Include="Features\Enderecos\ViewModels\EnderecoViewModel.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalEditarCommand.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalRegistroCommand.cs" />
+    <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalRemoveProdutosCommand.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\NotaFiscalRemoverCommand.cs" />
     <Compile Include="Features\Notas Fiscais\Commands\ProdutoNotaRegisterCommand.cs" />
     <Compile Include="Features\Notas Fiscais\INotaFiscalServico.cs" />

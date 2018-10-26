@@ -1,10 +1,10 @@
+import { Destinatario } from './../../../destinatario/shared/destinatario.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { NfeService } from '../../shared/nfe.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Emitente } from '../../../emitente/shared/emitente.model';
-import { Destinatario } from '../../../destinatario/shared/destinatario.model';
 import { Transportador } from './../../../transportador/shared/transportador.model';
 import { Produto } from '../../../produto/shared/produto.model';
 
@@ -34,8 +34,8 @@ export class NfeCreateComponent implements OnInit {
         emitenteId: ['', [Validators.required]],
         destinatarioId: ['', [Validators.required]],
         transportadorId: ['', [Validators.required]],
-        produtosNota: this.fb.array([]),
-        quantidade: [''],
+        produtosNota: this.fb.array([], Validators.required),
+        quantidade: ['1'],
     });
 
     private produtoSelecionado: Produto;
@@ -78,6 +78,7 @@ export class NfeCreateComponent implements OnInit {
         this.router.navigate(['../'], { relativeTo: this.route });
     }
 
+    //#region Emitente
     public onFilterEmitente(nome: any): void {
         this.isLoading = true;
         this.emitenteService.getByName(nome).subscribe((emitentes: Emitente[]) => {
@@ -89,7 +90,9 @@ export class NfeCreateComponent implements OnInit {
     public onSelectEmitente(emitente: Emitente): void {
         this.formModel.patchValue({ emitenteId: emitente.id });
     }
+    //#endregion
 
+    // #region Destinatario
     public onFilterDestinatario(nome: any): void {
         this.isLoading = true;
         this.destinatarioService.getByName(nome).subscribe((destinatarios: Destinatario[]) => {
@@ -102,6 +105,9 @@ export class NfeCreateComponent implements OnInit {
         this.formModel.patchValue({ destinatarioId: destinatario.id });
     }
 
+    //#endregion
+
+    //#region Trasnportador
     public onFilterTransportador(nome: any): void {
         this.isLoading = true;
         this.transportadorService.getByName(nome).subscribe((transportadores: Transportador[]) => {
@@ -113,17 +119,22 @@ export class NfeCreateComponent implements OnInit {
     public onSelectTransportador(transportador: Transportador): void {
         this.formModel.patchValue({ transportadorId: transportador.id });
     }
-
+    //#endregion
     public addProduto(): void {
-        const quantidade: number = this.formModel.get('quantidade').value;
-        this.produtoSelecionado.quantidade = quantidade;
-        const control: FormArray = this.formModel.get('produtosNota') as FormArray;
-        control.push(this.createProdutos(this.produtoSelecionado));
+        if (this.validateProdutosDuplicados()) {
+            const quantidade: number = this.formModel.get('quantidade').value;
+            this.produtoSelecionado.quantidade = quantidade;
+            const control: FormArray = this.formModel.get('produtosNota') as FormArray;
+            control.push(this.createProdutos(this.produtoSelecionado));
 
-        this.gridData.push(this.produtoSelecionado);
-        this.formModel.updateValueAndValidity();
-        this.valoresProdutos.push(this.produtoSelecionado);
-        this.calcularTotal();
+            this.gridData.push(this.produtoSelecionado);
+            this.formModel.updateValueAndValidity();
+            this.valoresProdutos.push(this.produtoSelecionado);
+
+            this.calcularTotal();
+        } else {
+            alert('Produto já adicionado');
+        }
     }
 
     public onSelectProduto(produto: Produto): void {
@@ -166,5 +177,15 @@ export class NfeCreateComponent implements OnInit {
             produtoId: [produto.id, Validators.required],
             quantidade: [produto.quantidade, Validators.required],
         });
+    }
+
+    private validateProdutosDuplicados(): boolean {
+        for (const produto of this.valoresProdutos) {
+            if (produto.id === this.produtoSelecionado.id) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

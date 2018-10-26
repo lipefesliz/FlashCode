@@ -1,5 +1,6 @@
 ﻿using FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands;
 using FlashCodeNFe.Dominio.Features.Notas_Fiscais;
+using FlashCodeNFe.Dominio.Features.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais
 
         IQueryable<NotaFiscal> PegarTodos();
 
+        IQueryable<Produto> PegarPorProdutoPorNota(long notaId);
+
         bool Remover(NotaFiscalRemoverCommand NotaFiscalRemoverCommand);
+        bool RemoverProdutos(NotaFiscalRemoveProdutosCommand notaFiscalRemoveProdutosCommand);
+        bool AdicionarProduto(ProdutoNotaRegisterCommand produtoNotaRegisterCommand);
     }
 }

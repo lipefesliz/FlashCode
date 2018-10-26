@@ -33,7 +33,7 @@ export class NfeDetailComponent implements OnInit, OnDestroy {
     }
 
     public redirect(): void {
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.router.navigate(['../']);
     }
 
     public onEdit(): void {

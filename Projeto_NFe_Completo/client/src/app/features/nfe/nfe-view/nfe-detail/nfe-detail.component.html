@@ -1,4 +1,4 @@
-<div class="feature-view__content">
+<div class="feature-view-tab__content">
     <div class="row">
         <!-- #region Coluna 1-->
         <div class="col-sm-6">
@@ -6,7 +6,7 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-12">
-                            <span class="feature-view__title">DADOS DO EMITENTE</span>
+                            <span class="feature-view__title">DADOS DO PRODUTO</span>
                         </div>
                     </div>
 
@@ -37,8 +37,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
 
                             <div class="row">
                                 <div class="col-sm-12 feature-view__body">
@@ -85,8 +83,8 @@
                                         <span class="feature-view__label">Valor do frete:</span>
                                     </div>
                                     <div class="truncate">
-                                        <span title="{{ nfe?.nomeDestinatario }}" class="feature-view__value">
-                                            {{ nfe?.valorFrete | currency:'BRL':'symbol' }}
+                                        <span title="{{ nfe?.valor?.frete }}" class="feature-view__value">
+                                            {{ nfe?.valor?.frete | currency:'BRL':'symbol' }}
                                         </span>
                                     </div>
                                 </div>
@@ -96,8 +94,8 @@
                                         <span class="feature-view__label">Valor Total:</span>
                                     </div>
                                     <div class="truncate">
-                                        <span title="{{ nfe?.totalNota }}" class="feature-view__value">
-                                            {{ nfe?.totalNota | currency:'BRL':'symbol' }}
+                                        <span title="{{ nfe?.valor?.totalNota }}" class="feature-view__value">
+                                            {{ nfe?.valor?.totalNota | currency:'BRL':'symbol' }}
                                         </span>
                                     </div>
                                 </div>
@@ -108,57 +106,16 @@
             </div>
         </div>
         <!-- #endregion -->
-
-        <!-- #region Coluna 2-->
-        <div class="col-sm-5">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <span class="feature-view__title">PRODUTOS</span>
-                        </div>
-                    </div>
-
-                    <div class="row feature-view__group">
-
-                        <div class="col-sm-12 feature-view__body">
-                            <div class="truncate" *ngFor="let item of nfe.produtos">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <span title="{{ item?.descricao }}" class="feature-view__value">
-                                            Descrição: {{ item?.descricao }}
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <span title="{{ item?.valorProduto?.total }}" class="feature-view__value">
-                                            Valor unitário: {{ item?.valorProduto?.total | currency:'BRL':'symbol' }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="row feature-view__group">
-                        <div class="col-sm-12">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- #endregion -->
-
     </div>
 
     <router-outlet></router-outlet>
 
-    <div class="feature-view-tab__footer">
-        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
-        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
-    </div>
-    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
-    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
 </div>
+
+
+<div class="feature-view-tab__footer">
+    <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+    <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+</div>
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

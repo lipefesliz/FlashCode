@@ -12,7 +12,6 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
     {
         public long Id { get; set; }
         public virtual string NaturezaOperacao { get; set; }
-        public IList<long> ProdutosID { get; set; }
         public decimal Frete { get; set; }
         public virtual long DestinatarioId { get; set; }
         public virtual long EmitenteId { get; set; }
@@ -32,7 +31,6 @@ namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
                 RuleFor(c => c.EmitenteId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.TransportadorId).NotNull().NotEmpty().GreaterThan(0);
                 RuleFor(c => c.NaturezaOperacao).NotNull().NotEmpty();
-                RuleFor(c => c.ProdutosID).NotEmpty().NotNull();
                 RuleFor(c => c.Frete).NotEmpty().NotNull();
             }
         }

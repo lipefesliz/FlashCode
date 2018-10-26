@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace FlashCodeNFe.Aplicacao.Features.Notas_Fiscais.Commands
 {
-    public class ProdutoNotaRegisterCommand
+   public class NotaFiscalRemoveProdutosCommand
     {
-        public long NotaFiscalId { get; set; }
-        public virtual long ProdutoId { get; set; }
-        public virtual long Quantidade { get; set; }
+        public virtual long NotaId { get; set; }
+        public virtual long[] ProdutosIds { get; set; }
 
         public virtual ValidationResult Validate()
         {
             return new Validator().Validate(this);
         }
 
-        class Validator : AbstractValidator<ProdutoNotaRegisterCommand>
+        class Validator : AbstractValidator<NotaFiscalRemoveProdutosCommand>
         {
             public Validator()
             {
-                RuleFor(c => c.ProdutoId).NotEmpty().NotNull().GreaterThan(0);
-                RuleFor(c => c.Quantidade).NotEmpty().NotNull().GreaterThan(0);
+                RuleFor(c => c.NotaId).NotNull().GreaterThan(0);
+                RuleFor(c => c.ProdutosIds.Length).GreaterThan(0);
+                RuleFor(c => c.ProdutosIds).NotEmpty().NotNull() ;
             }
         }
     }

@@ -58,12 +58,16 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
         {
             var nota = _context.NotasFiscais
                 .Include(n => n.Emitente)
+                .Include(n => n.Emitente.Endereco)
                 .Include(n => n.Destinatario)
+                .Include(n => n.Destinatario.Endereco)
                 .Include(n => n.Transportador)
+                .Include(n => n.Transportador.Endereco)
+
                 .Include(n => n.ProdutoNota)
                 .FirstOrDefault(n => n.Id == notaFiscalId);
 
-            var produtosIds = _context.ProdutoNota.Where(x => x.NotaFiscal.Id == notaFiscalId).Include(x => x.Produto).ToList();
+            var produtosIds = _context.ProdutoNota.Where(x => x.NotaFiscalId == notaFiscalId).Include(x => x.Produto).ToList();
 
             foreach (var item in produtosIds)
             {
@@ -74,21 +78,35 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             return nota;
         }
 
+        public IQueryable<Produto> PegarProdutoPorNota(long notaFiscalId)
+        {
+
+            return _context.ProdutoNota.Where(x => x.NotaFiscalId == notaFiscalId).Select(x => x.Produto);
+        }
+
         #endregion
 
         #region REMOVE
 
         public bool Remover(long[] notaFiscalsId)
         {
-            var notaFiscals = new List<NotaFiscal>();
+            var notaFiscais = new List<NotaFiscal>();
             foreach (var notaFiscal in notaFiscalsId)
             {
-                notaFiscals.Add(_context.NotasFiscais.Where(p => p.Id == notaFiscal).FirstOrDefault());
+                notaFiscais.Add(_context.NotasFiscais.Where(p => p.Id == notaFiscal).FirstOrDefault());
             }
-            if (notaFiscals.Count < 1)
+            if (notaFiscais.Count < 1)
                 throw new NotFoundException();
-            
-            _context.NotasFiscais.RemoveRange(notaFiscals);
+
+            var produtosNota = new List<ProdutoNota>();
+
+            foreach (var item in notaFiscais)
+            {
+                produtosNota.AddRange(_context.ProdutoNota.Where(x => x.NotaFiscalId == item.Id).ToList());
+            }
+
+            _context.ProdutoNota.RemoveRange(produtosNota);
+            _context.NotasFiscais.RemoveRange(notaFiscais);
 
             return _context.SaveChanges() > 0;
         }
@@ -100,6 +118,46 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
         {
             // Altera o estado
             _context.Entry(notaFiscal).State = EntityState.Modified;
+            // Salva mudanças
+            return _context.SaveChanges() > 0;
+        }
+
+        public bool AdicionarProduto(long notaId, long produtoId, long quantidade)
+        {
+            var nota = _context.NotasFiscais.Where(x => x.Id == notaId).FirstOrDefault() ?? throw new NotFoundException();
+            var produto = _context.Produtos.Where(x => x.Id == produtoId).FirstOrDefault() ?? throw new NotFoundException();
+
+            var produtoNotaDb = _context.ProdutoNota.Where(x => x.NotaFiscalId == notaId && x.Produto.Id == produtoId).FirstOrDefault();
+
+            if (produtoNotaDb != null)
+            {
+                return false;
+            }
+
+
+            var produtoNota = new ProdutoNota();
+            produtoNota.NotaFiscalId = nota.Id;
+            produtoNota.Quantidade = quantidade;
+            produtoNota.ProdutoId = produtoId;
+            produtoNota.Produto = produto;
+
+            _context.ProdutoNota.Add(produtoNota);
+
+            return _context.SaveChanges() > 0;
+        }
+
+        public bool RemoverProdutos(long notaFiscalId, long[] produtosIds)
+        {
+            var nota = _context.NotasFiscais.FirstOrDefault(n => n.Id == notaFiscalId) ?? throw new NotFoundException();
+
+            var produtosNota = new List<ProdutoNota>();
+            foreach (var item in produtosIds)
+            {
+                produtosNota.AddRange(_context.ProdutoNota.Where(x => x.NotaFiscalId == notaFiscalId && x.Produto.Id == item).ToList());
+            }
+
+            _context.ProdutoNota.RemoveRange(produtosNota);
+
             // Salva mudanças
             return _context.SaveChanges() > 0;
         }

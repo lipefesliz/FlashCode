@@ -51,7 +51,7 @@ namespace FlashCodeNFe.Infra.ORM.Features.Emitentes
 
         public Emitente PegarPorId(long emitenteId)
         {
-            return _context.Emitentes.Include("Endereco").FirstOrDefault(e => e.Id == emitenteId);
+            return _context.Emitentes.Include(x => x.Endereco).FirstOrDefault(e => e.Id == emitenteId);
         }
 
         #endregion

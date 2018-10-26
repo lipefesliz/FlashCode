@@ -20,7 +20,7 @@ namespace FlashCodeNFe.Infra.ORM.Features.Orders
             Property(t => t.InscricaoMunicipal).HasMaxLength(50).IsOptional();
             this.Property(e => e.Cpf).IsOptional();
             this.Property(e => e.Cnpj).IsOptional();
-            HasRequired(t => t.Endereco).WithMany();
+            HasRequired(t => t.Endereco).WithMany().WillCascadeOnDelete(true);
         }
     }
 }

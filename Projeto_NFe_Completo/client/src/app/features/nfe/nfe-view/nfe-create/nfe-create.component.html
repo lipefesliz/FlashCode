@@ -108,7 +108,6 @@
                 </div>
                 <!-- #endregion -->
 
-                <!-- #region Coluna 2-->
                 <div class="col-sm-5">
                     <div class="row">
                         <div class="col-sm-12">
@@ -120,88 +119,73 @@
 
                             <div class="row feature-view__group">
                                 <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-12 feature-view__body">
-                                            <div class="row">
 
-                                                <div class="row">
-                                                    <div class="col-sm-6 feature-view__body">
-                                                        <label class="control-label">
-                                                            <span class="feature-view__label">Produto:</span>
-                                                            <span class=" feature-view__label feature-view__label--error">*</span>
-                                                        </label>
-                                                        <kendo-dropdownlist class="feature-view__value form-control"
-                                                            [data]="produtos" [textField]="'descricao'" [valueField]="'descricao'"
-                                                            (selectionChange)="onSelectProduto($event)" [filterable]="true"
-                                                            (filterChange)="onFilterProduto($event)" [defaultItem]="defaultItem">
-                                                        </kendo-dropdownlist>
-                                                    </div>
-                                                    <div class="col-sm-6 feature-view__body">
-                                                        <label class="control-label">
-                                                            <span class="feature-view__label">Quantidade:</span>
-                                                            <span class=" feature-view__label feature-view__label--error">*</span>
-                                                        </label>
-                                                        <input type="number" class="feature-view__value form-control"
-                                                            min="1" formControlName="quantidade" placeholder="Entre com a quantidade">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <label class="control-label">
-                                                        <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="!produtoSelecionado"
-                                                            (click)="addProduto()">Adicionar</button>
-                                                    </label>
-                                                </div>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Produto:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <kendo-dropdownlist class="feature-view__value form-control" [data]="produtos"
+                                                [textField]="'descricao'" [valueField]="'descricao'" (selectionChange)="onSelectProduto($event)"
+                                                [filterable]="true" (filterChange)="onFilterProduto($event)"
+                                                [defaultItem]="defaultItem">
+                                            </kendo-dropdownlist>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <span class="feature-view__title">PRODUTOS ADICIONADOS</span>
-                                </div>
-                            </div>
-
-                            <div class="row feature-view__group">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-12 feature-view__body">
-                                            <kendo-grid [style.height]="'50%'" [data]="gridData">
-
-                                                <kendo-grid-checkbox-column width="5"></kendo-grid-checkbox-column>
-
-                                                <kendo-grid-column field="codigoProduto" title="Codigo do produto"
-                                                    width="50"></kendo-grid-column>
-                                                <kendo-grid-column field="descricao" title="Descrição" width="50"></kendo-grid-column>
-                                                <kendo-grid-column field="quantidade" editor="numeric" title="Quantidade"
-                                                    width="50"></kendo-grid-column>
-                                                <kendo-grid-column field="valor"   format="{0:c}" title="Valor do produto" width="50"></kendo-grid-column>
-
-                                            </kendo-grid>
+                                        <div class="col-sm-3 feature-view__body">
+                                            <label class="control-label">
+                                                <span class="feature-view__label">Quantidade:</span>
+                                                <span class=" feature-view__label feature-view__label--error">*</span>
+                                            </label>
+                                            <input type="number" class="feature-view__value form-control" min="1"
+                                                formControlName="quantidade" placeholder="Entre com a quantidade">
+                                        </div>
+                                        <div class="col-sm-3 feature-view__body">
+                                            <label class="control-label">
+                                            </label>
+                                            <div class="feature-view__value">
+                                                <button class="ndd-ng-button ndd-ng-button--primary" [disabled]="!produtoSelecionado"
+                                                    (click)="addProduto()">Adicionar</button>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-12 feature-view__body">
                                             <label class="control-label">
-                                                <button class="ndd-ng-button ndd-ng-button--primary" (click)="clearAll()">Remover
-                                                    Todos</button>
+                                                <span class="feature-view__label">Produtos Adicionados:</span>
                                             </label>
+                                            <kendo-grid [style.height]="'50%'" [data]="gridData">
+
+                                                <kendo-grid-column field="codigoProduto" title="Codigo" width="100"></kendo-grid-column>
+                                                <kendo-grid-column field="descricao" title="Descrição" width="100"></kendo-grid-column>
+                                                <kendo-grid-column field="quantidade" editor="numeric" title="Quantidade"
+                                                    width="50"></kendo-grid-column>
+                                                <kendo-grid-column field="valor" format="{0:c}" title="Valor" width="60"></kendo-grid-column>
+
+                                            </kendo-grid>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-sm-12 feature-view__body">
+                                            <label class="control-label">
+                                                <div class="feature-view__value">
+                                                    <button class="ndd-ng-button ndd-ng-button--primary" (click)="clearAll()">Remover
+                                                        Todos</button>
+                                                </div>
+
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- #endregion -->
+
             </div>
-            {{ formModel.value  | json }}
         </form>
     </div>
     <div class="feature-view__footer">

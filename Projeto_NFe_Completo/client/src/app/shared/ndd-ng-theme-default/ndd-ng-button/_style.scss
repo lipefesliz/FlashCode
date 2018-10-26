@@ -10,6 +10,9 @@
             opacity: .6;
             cursor: not-allowed;
         }
+        &--padding {
+            padding: 0%;
+        }
         &--primary {
             color: $ndd-ng-button-primary-font-color;
             background-color: $ndd-ng-button-primary-color;
